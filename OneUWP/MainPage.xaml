@@ -1,0 +1,107 @@
+﻿<Page
+    x:Class="OneUWP.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:OneUWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Loaded="Page_Loaded"
+    mc:Ignorable="d"
+    RequestedTheme="{Binding APPTheme}">
+    <Page.BottomAppBar>
+        <CommandBar Visibility="Collapsed">
+            <AppBarButton Icon="Home" Label="图片" Click="AppBarButton_Click"/>
+        </CommandBar>
+    </Page.BottomAppBar>
+
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+          DoubleTapped="Grid_DoubleTapped">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <RelativePanel x:Name="TitleRelativePanel" Background="SkyBlue">
+            <Button Name="HamburgerButton" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" FontSize="24" Click="HamburgerButton_Click" RelativePanel.AlignLeftWithPanel="True"/>
+            <TextBlock  Name="AppTitle" Text="One 一个" FontWeight="Bold" FontSize="24" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="20,0,0,0" />
+        </RelativePanel>
+        <SplitView Grid.Row="1" 
+                   Name="mySplitView" 
+                   DisplayMode="CompactOverlay" 
+                   OpenPaneLength="150" 
+                CompactPaneLength="44"
+                   HorizontalAlignment="Left">
+            <SplitView.Pane>
+                <RelativePanel>
+                    <ListBox SelectionMode="Single" Name="OneListBox" SelectionChanged="ListBox_SelectionChanged">
+                        <ListBoxItem Name="HomeListBoxItem" >
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="24" Text="&#xE80F;" />
+                                <TextBlock Text="图片" FontSize="20" Margin="20,0,0,0" />
+                            </StackPanel>
+                        </ListBoxItem>
+                        <ListBoxItem Name="QuestionListBoxItem">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="24" Text="&#xE8F1;" />
+                                <TextBlock Text="阅读" FontSize="20" Margin="20,0,0,0" />
+                            </StackPanel>
+                        </ListBoxItem>
+                        <ListBoxItem Name="MusicListBoxItem">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="24" Text="&#xE8D6;" />
+                                <TextBlock Text="音乐" FontSize="20" Margin="20,0,0,0" />
+                            </StackPanel>
+                        </ListBoxItem>
+                        <ListBoxItem Name="MovieListBoxItem">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="24" Text="&#xE714;" />
+                                <TextBlock Text="电影" FontSize="20" Margin="20,0,0,0" />
+                            </StackPanel>
+                        </ListBoxItem>
+                    </ListBox>
+                    <ListBox RelativePanel.AlignBottomWithPanel="True" SelectionChanged="ListBox_SelectionChanged">
+                        <ListBoxItem Name="SetDateListBoxItem">
+                            <StackPanel Orientation="Horizontal"  RelativePanel.AlignBottomWithPanel="True">
+                                <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="24" Text="&#xE8F5;" />
+                                <TextBlock Text="日期" FontSize="20" Margin="20,0,0,0" />
+                            </StackPanel>
+                        </ListBoxItem>
+                        <ListBoxItem Name="SettingListBoxItem">
+                            <StackPanel Orientation="Horizontal"  RelativePanel.AlignBottomWithPanel="True">
+                                <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="24" Text="&#xE115;" />
+                                <TextBlock Text="关于" FontSize="20" Margin="20,0,0,0" />
+                            </StackPanel>
+                        </ListBoxItem>
+                        <!--<ListBoxItem Name="TestListBoxItem">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontSize="24" Text="测" />
+                            <TextBlock Text="API测试" FontSize="20" Margin="20,0,0,0" />
+                        </StackPanel>
+                    </ListBoxItem> -->
+                    </ListBox>
+                </RelativePanel>
+            </SplitView.Pane>
+            <SplitView.Content>
+                <RelativePanel>
+                    <Frame Grid.Row="1" Name="myFrame"/>
+                    <ProgressRing  Width="60" Height="60" 
+                                   Visibility="{Binding ProgressRingVisibility}" 
+                                   IsActive="True"
+                                   RelativePanel.AlignHorizontalCenterWithPanel="True"
+                                   RelativePanel.AlignVerticalCenterWithPanel="True"/>
+                </RelativePanel>
+            </SplitView.Content>
+        </SplitView>
+        <Popup HorizontalOffset="130" VerticalOffset="280" IsOpen="False" IsLightDismissEnabled="False" Name="popTips">
+            <Border BorderThickness="1" CornerRadius="2" Padding="7" Name="borTip">
+                <Border.Background>
+                    <SolidColorBrush Color="Black" Opacity="0.8"/>
+                </Border.Background>
+                <TextBlock x:Name="PopupTextBlock" Foreground="White">
+                    再按一次退出
+                </TextBlock>
+            </Border>
+        </Popup>
+
+    </Grid>
+</Page>

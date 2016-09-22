@@ -1,0 +1,37 @@
+﻿<Page
+    x:Class="OneUWP.HomePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:OneUWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:OneUWP.Model"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    Loaded="Page_Loaded"
+    mc:Ignorable="d"
+    ManipulationMode="System,TranslateX" >
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--调试时显示错误信息-->
+        <TextBlock Grid.Row="0" Name="InfoTextBlock" Text="电脑端"/>
+        <ListView  Grid.Row="1" SelectionMode="None" CanDrag="True">
+            <StackPanel Orientation="Vertical" ManipulationMode="System,TranslateX" >
+                <!--<Image Source="{Binding writeableBitmap,Mode=TwoWay}" Name="TheImage" Stretch="Uniform"/> -->
+                <controls:ImageEx Name="ImageExControl"	IsCacheEnabled="True" Stretch="Uniform" Source="{Binding writeableBitmap,Mode=TwoWay}"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" ManipulationMode="System,TranslateX" >
+                <TextBlock Text="{Binding author,Mode=TwoWay}"  Name="AuthorTextBlock" TextWrapping="Wrap" Margin="0,20,0,0" HorizontalAlignment="Right" FontWeight="Black"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" ManipulationMode="System,TranslateX" >
+                <TextBlock Text="{Binding date,Mode=TwoWay}"  Name="ImageTimeTextBlock" TextWrapping="Wrap" Margin="0,20,0,0" HorizontalAlignment="Right"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" ManipulationMode="System,TranslateX" >
+                <TextBlock Text="{Binding content,Mode=TwoWay}"  Name="ContentTextBlock" TextWrapping="Wrap" Margin="0,20,0,0"/>
+            </StackPanel>
+        </ListView>
+        <ProgressRing Name="progressRing" Width="60" Height="60" Visibility="Collapsed" IsActive="True"/>
+    </Grid>
+</Page>

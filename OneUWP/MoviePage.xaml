@@ -10,10 +10,25 @@
         mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ListView ItemsSource="{x:Bind ImageCollection}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <MediaElement Name="musicPlayer" AutoPlay="False"/>
+
+
+        <TextBlock Grid.Row="0" Name="InfoTextBlock"/>
+
+        <ListView Grid.Row="1" ItemsSource="{x:Bind ImageCollection}"
+                  IsItemClickEnabled="True"
+                   ItemClick="myListView_ItemClick"
+                Name="myListView"  >
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="data:MoviePageModel">
-                    <Image Source="{x:Bind wb}"/>
+                    <StackPanel>
+                        <TextBlock Text="{x:Bind id}"/>
+                        <Image  Source="{x:Bind wb}"/>
+                    </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

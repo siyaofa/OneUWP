@@ -47,10 +47,11 @@ namespace OneUWP.Http
         /// <summary>
         /// 短篇内容
         /// </summary>
-        public async static Task<essay_detail> Get_essay_detail()
+        public async static Task<essay_detail> Get_essay_detail(string id)
         {
             var httpClient = new HttpClient();
-            var response = await httpClient.GetAsync(ServiceURL.hp_detail);
+            string url = ServiceURL.essay_detail + id + "?";
+            var response = await httpClient.GetAsync(url);
             var result = await response.Content.ReadAsStringAsync();
             var serializer = new DataContractJsonSerializer(typeof(essay_detail));
             var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
@@ -60,16 +61,32 @@ namespace OneUWP.Http
         /// <summary>
         /// 首页内容
         /// </summary>
-        public async static Task<hp_detail> Get_hp_detail()
+        public async static Task<hp_detail> Get_hp_detail(string id)
         {
             var httpClient = new HttpClient();
-            var response = await httpClient.GetAsync(ServiceURL.hp_detail);
+            var url=ServiceURL.hp_detail+id+"?";
+            var response = await httpClient.GetAsync(url);
             var result = await response.Content.ReadAsStringAsync();
             var serializer = new DataContractJsonSerializer(typeof(hp_detail));
             var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
             var data = (hp_detail)serializer.ReadObject(ms);
             return data;
         }
+
+        public async static Task<serial_detail> Get_serial_detail(string id)
+        {
+            var httpClient = new HttpClient();
+            var url = ServiceURL.serial_detail + id + "?";
+            var response = await httpClient.GetAsync(url);
+            var result = await response.Content.ReadAsStringAsync();
+            var serializer = new DataContractJsonSerializer(typeof(serial_detail));
+            var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
+            var data = (serial_detail)serializer.ReadObject(ms);
+            return data;
+        }
+
+
+
         /// <summary>
         /// 最近几期的id lists首页
         /// </summary>
@@ -86,10 +103,21 @@ namespace OneUWP.Http
         /// <summary>
         /// 电影内容
         /// </summary>
-        public async static Task<movie_detail> Get_movie_detail()
+        public async static Task<movie_list> Get_movie_list()
         {
             var httpClient = new HttpClient();
-            var response = await httpClient.GetAsync(ServiceURL.movie_detail);
+            var response = await httpClient.GetAsync(ServiceURL.movie_list);
+            var result = await response.Content.ReadAsStringAsync();
+            var serializer = new DataContractJsonSerializer(typeof(movie_list));
+            var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
+            var data = (movie_list)serializer.ReadObject(ms);
+            return data;
+        }
+        public async static Task<movie_detail> Get_movie_detail(string id)
+        {
+            var httpClient = new HttpClient();
+            string url = ServiceURL.movie_detail + id + "?";
+            var response = await httpClient.GetAsync(url);
             var result = await response.Content.ReadAsStringAsync();
             var serializer = new DataContractJsonSerializer(typeof(movie_detail));
             var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
@@ -164,10 +192,11 @@ namespace OneUWP.Http
         /// <summary>
         /// 问题内容
         /// </summary>
-        public async static Task<question_detail> Get_question_detail()
+        public async static Task<question_detail> Get_question_detail(string id)
         {
             var httpClient = new HttpClient();
-            var response = await httpClient.GetAsync(ServiceURL.question_detail);
+            string url = ServiceURL.question_detail+id+"?";
+            var response = await httpClient.GetAsync(url);
             var result = await response.Content.ReadAsStringAsync();
             var serializer = new DataContractJsonSerializer(typeof(question_detail));
             var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));

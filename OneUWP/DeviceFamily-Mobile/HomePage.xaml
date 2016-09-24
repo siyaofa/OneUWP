@@ -5,7 +5,7 @@
     xmlns:local="using:OneUWP"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:data="using:OneUWP.Model"
+    xmlns:data="using:OneUWP.Models"
     Loaded="Page_Loaded"
     mc:Ignorable="d"
      ManipulationMode="System,TranslateX" >
@@ -18,19 +18,23 @@
         </Grid.RowDefinitions>
         <!--调试时显示错误信息-->
         <TextBlock Grid.Row="0" Name="InfoTextBlock" Text="手机端"/>
-        <Image Grid.Row="1" Source="{Binding writeableBitmap,Mode=TwoWay}" Name="TheImage" Stretch="Uniform"/>
-        <StackPanel Grid.Row="2"  ManipulationMode="TranslateX">
-            <ListView SelectionMode="None">
-                <StackPanel ManipulationMode="TranslateX">
-                    <TextBlock Text="{Binding author,Mode=TwoWay}"  Name="AuthorTextBlock" TextWrapping="Wrap" Margin="0,20,0,0" HorizontalAlignment="Right" FontWeight="Black"/>
-                </StackPanel>
-                <StackPanel ManipulationMode="TranslateX">
-                    <TextBlock Text="{Binding date,Mode=TwoWay}"  Name="ImageTimeTextBlock" TextWrapping="Wrap" Margin="0,20,0,0" HorizontalAlignment="Right"/>
-                </StackPanel>
-                <StackPanel ManipulationMode="TranslateX">
-                    <TextBlock Text="{Binding content,Mode=TwoWay}"  Name="ContentTextBlock" TextWrapping="Wrap" Margin="0,20,0,0"/>
-                </StackPanel>
-            </ListView>
-        </StackPanel>
+        <FlipView Grid.Row="1" Name="homeFlipView" 
+              Background="White"
+              UseTouchAnimationsForAllNavigation="False"
+              ItemsSource="{x:Bind homePageData}">
+            <FlipView.ItemTemplate>
+                <DataTemplate x:DataType="data:HomePageModel">
+                    <ListView  SelectionMode="None">
+                        <Image Source="{x:Bind writeableBitmap}" Name="TheImage" Stretch="Uniform"/>
+                        <TextBlock Text="{x:Bind author}"  Name="AuthorTextBlock" TextWrapping="Wrap" Margin="0,20,0,0" HorizontalAlignment="Right" FontWeight="Black"/>
+                        <TextBlock Text="{x:Bind date}"  Name="ImageTimeTextBlock" TextWrapping="Wrap" Margin="0,20,0,0" HorizontalAlignment="Right"/>
+                        <TextBlock Text="{x:Bind content}"  Name="ContentTextBlock" TextWrapping="Wrap" Margin="0,20,0,0"/>
+                    </ListView>
+                </DataTemplate>
+            </FlipView.ItemTemplate>
+        </FlipView>
+
+
+        <ProgressRing Name="progressRing" Width="60" Height="60" Visibility="Collapsed" IsActive="True"/>
     </Grid>
 </Page>

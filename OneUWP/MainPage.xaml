@@ -40,7 +40,7 @@
                                 <TextBlock Text="图片" FontSize="20" Margin="20,0,0,0" />
                             </StackPanel>
                         </ListBoxItem>
-                        <ListBoxItem Name="QuestionListBoxItem">
+                        <ListBoxItem Name="ReadingListBoxItem">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="24" Text="&#xE8F1;" />
                                 <TextBlock Text="阅读" FontSize="20" Margin="20,0,0,0" />

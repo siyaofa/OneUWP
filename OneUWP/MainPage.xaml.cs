@@ -138,10 +138,10 @@ namespace OneUWP
                 myFrame.Navigate(typeof(HomePage));
                 AppTitle.Text = "One 一个";
             }
-            else if (item == "QuestionListBoxItem")
+            else if (item == "ReadingListBoxItem")
             {
-                myFrame.Navigate(typeof(QuestionPage));
-                AppTitle.Text = "问 题";
+                myFrame.Navigate(typeof(ReadingPage));
+                AppTitle.Text = "阅 读";
             }
             else if (item == "SettingListBoxItem")
             {
@@ -186,10 +186,10 @@ namespace OneUWP
                 myFrame.Navigate(typeof(HomePage));
                 AppTitle.Text = "One 一个";
             }
-            else if (lable == "问题")
+            else if (lable == "阅读")
             {
-                myFrame.Navigate(typeof(QuestionPage));
-                AppTitle.Text = "问 题";
+                myFrame.Navigate(typeof(ReadingPage));
+                AppTitle.Text = "阅 读";
             }
             else if (lable == "音乐")
             {
@@ -227,14 +227,14 @@ namespace OneUWP
 
         private void Grid_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
-            if (mainPageViewModel.AppBarDisplayMode == AppBarClosedDisplayMode.Minimal)
-            {
-                mainPageViewModel.AppBarDisplayMode = AppBarClosedDisplayMode.Compact;
-            }
-            else if (mainPageViewModel.AppBarDisplayMode == AppBarClosedDisplayMode.Compact)
-            {
-                mainPageViewModel.AppBarDisplayMode = AppBarClosedDisplayMode.Minimal;
-            }
+            //if (mainPageViewModel.AppBarDisplayMode == AppBarClosedDisplayMode.Minimal)
+            //{
+            //    mainPageViewModel.AppBarDisplayMode = AppBarClosedDisplayMode.Compact;
+            //}
+            //else if (mainPageViewModel.AppBarDisplayMode == AppBarClosedDisplayMode.Compact)
+            //{
+            //    mainPageViewModel.AppBarDisplayMode = AppBarClosedDisplayMode.Minimal;
+            //}
         }
     }
 

@@ -7,26 +7,26 @@ using System.Threading.Tasks;
 namespace OneUWP.Http
 {
     /// <summary>
-    /// 以下api参照android官方客户端  均是get方式请求  返回json、html 
+    /// 以下api参照android官方客户端 返回json
     /// </summary>
     static class ServiceURL
     {
         /// <summary>
-        /// 最近几期的id lists首页
+        /// 最近几期的idlists首页
         /// </summary>
         public static string hp_idlist = "http://v3.wufazhuce.com:8000/api/hp/idlist/0?";
         /// <summary>
-        /// 最近几期音乐
+        /// 最近几期的idlist音乐
         /// </summary>
         public static string music_idlist = "http://v3.wufazhuce.com:8000/api/music/idlist/0?";
         /// <summary>
-        /// 最近几期的 id list阅读
+        /// 最近几期的idlist阅读
         /// </summary>
         public static string reading_idlist = "http://v3.wufazhuce.com:8000/api/reading/index/?";
         /// <summary>
         /// 首页内容
         /// </summary>
-        public static string hp_detail = "http://v3.wufazhuce.com:8000/api/hp/detail/1470?";
+        public static string hp_detail = "http://v3.wufazhuce.com:8000/api/hp/detail/";
         /// <summary>
         /// 短篇评论
         /// </summary>
@@ -38,7 +38,7 @@ namespace OneUWP.Http
         /// <summary>
         /// 短篇内容
         /// </summary>
-        public static string essay_detail = "http://v3.wufazhuce.com:8000/api/essay/1531?";
+        public static string essay_detail = "http://v3.wufazhuce.com:8000/api/essay/";
         /// <summary>
         /// 连载评论数
         /// </summary>
@@ -64,13 +64,21 @@ namespace OneUWP.Http
         /// </summary>
         public static string question_update = "http://v3.wufazhuce.com:8000/api/question/update/1478/2016-09-21%2010:02:23?";
         /// <summary>
+        /// 连载内容
+        /// </summary>
+        public static string serial_detail = "http://v3.wufazhuce.com:8000/api/serialcontent/";
+        /// <summary>
         /// 问题内容
         /// </summary>
-        public static string question_detail = "http://v3.wufazhuce.com:8000/api/question/1441?";
+        public static string question_detail = "http://v3.wufazhuce.com:8000/api/question/";
         /// <summary>
-        /// 电影内容
+        /// 电影内容列表
         /// </summary>
-        public static string movie_detail = "http://v3.wufazhuce.com:8000/api/movie/list/98?";
+        public static string movie_list = "http://v3.wufazhuce.com:8000/api/movie/list/0?";
+        /// <summary>
+        /// 电影详细内容
+        /// </summary>
+        public static string movie_detail = "http://v3.wufazhuce.com:8000/api/movie/detail/";
         /// <summary>
         /// 相关音乐
         /// </summary>

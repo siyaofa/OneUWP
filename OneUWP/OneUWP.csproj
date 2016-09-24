@@ -96,6 +96,9 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="BackgroundProxy.cs" />
+    <Compile Include="EssayPage.xaml.cs">
+      <DependentUpon>EssayPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HomePage.xaml.cs" />
     <Compile Include="Http\APIBaseService.cs" />
     <Compile Include="Http\APIService.cs" />
@@ -106,6 +109,7 @@
     <Compile Include="Http\Data\hp_detail.cs" />
     <Compile Include="Http\Data\hp_idlist.cs" />
     <Compile Include="Http\Data\movie_detail.cs" />
+    <Compile Include="Http\Data\movie_list.cs" />
     <Compile Include="Http\Data\music_comment.cs" />
     <Compile Include="Http\Data\music_detail.cs" />
     <Compile Include="Http\Data\music_idlist.cs" />
@@ -117,14 +121,20 @@
     <Compile Include="Http\Data\reading_idlist.cs" />
     <Compile Include="Http\Data\serial_comment.cs" />
     <Compile Include="Http\Data\serial_commentnum.cs" />
+    <Compile Include="Http\Data\serial_detail.cs" />
     <Compile Include="Http\Data\serial_related.cs" />
     <Compile Include="Http\ServiceURL.cs" />
-    <Compile Include="ImagePage.xaml.cs" />
+    <Compile Include="ImagePage.xaml.cs">
+      <DependentUpon>ImagePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\EssayPageModel.cs" />
+    <Compile Include="Models\HomePageModel.cs" />
     <Compile Include="Models\MoviePageModel.cs" />
     <Compile Include="Models\MusicPageModel.cs" />
+    <Compile Include="Models\ReadingPageModel.cs" />
     <Compile Include="Model\GetDateSheets.cs" />
     <Compile Include="Model\GetIdFromDate.cs" />
     <Compile Include="Model\HomepageData.cs" />
@@ -137,11 +147,20 @@
     <Compile Include="Model\QuestionRootObject.cs" />
     <Compile Include="Model\Sheet.cs" />
     <Compile Include="Model\XmlUtil.cs" />
+    <Compile Include="MovieDetailPage.xaml.cs">
+      <DependentUpon>MovieDetailPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MoviePage.xaml.cs" />
+    <Compile Include="MovieStoryPage.xaml.cs">
+      <DependentUpon>MovieStoryPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MusicPage.xaml.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuestionPage.xaml.cs" />
     <Compile Include="ReadingPage.xaml.cs" />
+    <Compile Include="SerialPage.xaml.cs">
+      <DependentUpon>SerialPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SetDatePage.xaml.cs" />
     <Compile Include="SettingPage.xaml.cs" />
     <Compile Include="TestPage.xaml.cs" />
@@ -152,11 +171,15 @@
     <Compile Include="Tools\ImageOperation.cs" />
     <Compile Include="Tools\NetworkManager.cs" />
     <Compile Include="ViewModels\DataShareManager.cs" />
+    <Compile Include="ViewModels\EssayPageViewModel.cs" />
     <Compile Include="ViewModels\HomePageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
+    <Compile Include="ViewModels\MovieDetailPageViewModel.cs" />
     <Compile Include="ViewModels\MoviePageViewModel.cs" />
+    <Compile Include="ViewModels\MovieStoryPageViewModel.cs" />
     <Compile Include="ViewModels\MusicPageViewModel.cs" />
     <Compile Include="ViewModels\QuestionPageViewModel.cs" />
+    <Compile Include="ViewModels\SerialPageViewModel.cs" />
     <Compile Include="ViewModels\SettingPageViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
   </ItemGroup>
@@ -228,6 +251,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="EssayPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="HomePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -240,9 +267,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="MovieDetailPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MoviePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MovieStoryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MusicPage.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -255,6 +290,10 @@
     <Page Include="ReadingPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SerialPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SetDatePage.xaml">
       <Generator>MSBuild:Compile</Generator>

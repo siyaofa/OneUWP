@@ -7,6 +7,7 @@ using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -19,7 +20,7 @@ namespace OneUWP
     {
         public double x;
         public QuestionPageViewModel questionPageViewModel;
-
+        public string questionId;
 
         public QuestionPage()
         {
@@ -75,7 +76,7 @@ namespace OneUWP
         {
             InfoTextBlock.Visibility = Visibility.Visible;
             InfoTextBlock.Text = "请稍等";
-            var question_detail = await APIService.Get_question_detail();
+            var question_detail = await APIService.Get_question_detail(questionId);
             if (question_detail != null)
             {
                 questionPageViewModel.questionTitle = question_detail.data.question_title;
@@ -92,7 +93,10 @@ namespace OneUWP
             }
         }
 
-
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+           questionId = (string)e.Parameter;
+        }
     }
 
 

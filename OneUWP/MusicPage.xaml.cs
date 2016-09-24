@@ -46,13 +46,9 @@ namespace OneUWP
         private async void FreshPage()
         {
             music_detail _music_detail = await Http.APIService.Get_music_detail();
-
             var writeableBitmap = await ImageOperation.GetImage(_music_detail.data.cover);
-
             musicPageViewModel.wb = writeableBitmap;
             musicPageViewModel.lyric = Regex.Replace(_music_detail.data.lyric, "<br>", Environment.NewLine);
-        
-          
         }
     }
 }

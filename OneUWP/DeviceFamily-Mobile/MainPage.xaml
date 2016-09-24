@@ -20,7 +20,7 @@
             </CommandBar.SecondaryCommands>
 
             <AppBarButton Icon="Home" Label="图片" Click="AppBarButton_Click"/>
-            <AppBarButton Icon="Library" Label="问题" Click="AppBarButton_Click"/>
+            <AppBarButton Icon="Library" Label="阅读" Click="AppBarButton_Click"/>
             <AppBarButton Icon="Video" Label="电影" Click="AppBarButton_Click"/>
             <AppBarButton Icon="Audio" Label="音乐" Click="AppBarButton_Click"/>
         </CommandBar>

@@ -18,6 +18,7 @@ using Windows.UI.Xaml.Navigation;
 using OneUWP.Http;
 using OneUWP.Tools;
 using OneUWP.Models;
+using OneUWP.Http.Data;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -28,26 +29,34 @@ namespace OneUWP
     /// </summary>
     public sealed partial class MoviePage : Page
     {
-        public ObservableCollection<MoviePageModel> ImageCollection = new ObservableCollection<MoviePageModel>(); 
+        public ObservableCollection<MoviePageModel> ImageCollection = new ObservableCollection<MoviePageModel>();
         public MoviePage()
         {
             this.InitializeComponent();
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        public void Page_Loaded(object sender, RoutedEventArgs e)
         {
 
             PageFresh();
         }
 
-        private async void PageFresh()
+        public async void PageFresh()
         {
-            var _movie_detail = await APIService.Get_movie_detail();
+            var _movie_list = await APIService.Get_movie_list();
 
-            for (int i = 0; i < _movie_detail.data.Count(); i++)
+            for (int i = 0; i < _movie_list.data.Count(); i++)
             {
-                ImageCollection.Add(new MoviePageModel { wb = await ImageOperation.GetImage(_movie_detail.data[i].cover) });
+                ImageCollection.Add(new MoviePageModel { wb = await ImageOperation.GetImage(_movie_list.data[i].cover),id=_movie_list.data[i].id });
             }
+        }
+
+        private void myListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+           
+            MoviePageModel item = (MoviePageModel)e.ClickedItem;
+            // InfoTextBlock.Text =item.id;
+            Frame.Navigate(typeof(MovieDetailPage), item.id);
         }
     }
 }

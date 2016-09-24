@@ -19,6 +19,5 @@
                             SelectionMode="None">
             <TextBlock Text="{x:Bind musicPageViewModel.lyric,Mode=OneWay}" TextWrapping="Wrap"/>
         </ListView>
-
     </Grid>
 </Page>

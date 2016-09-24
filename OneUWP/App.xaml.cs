@@ -17,6 +17,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using OneUWP.Http.Data;
 
 namespace OneUWP
 {
@@ -36,12 +37,29 @@ namespace OneUWP
         internal static List<Sheet> homepageSheet;
         internal static List<Sheet> questionpageSheet;
         internal static ElementTheme appTheme = ElementTheme.Light;
+        //最新的列表
+      
+        internal static reading_idlist readingIDList;
+        internal static music_idlist musicIDList;
+
+
+
         public App()
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
             new BackgroundProxy().Register();
+            GetIdList();
         }
+
+        private async void GetIdList()
+        {
+          
+            readingIDList = await Http.APIService.Get_reading_idlist();
+            musicIDList = await Http.APIService.Get_music_idlist();
+        }
+
+
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points

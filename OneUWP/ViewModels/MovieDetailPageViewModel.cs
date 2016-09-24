@@ -90,6 +90,65 @@ namespace OneUWP.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        private WriteableBitmap _story_web_url;
+        public WriteableBitmap story_web_url
+        {
+            get
+            {
+                return _story_web_url;
+            }
+            set
+            {
+                _story_web_url = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        private string _story_content;
+        public string story_content
+        {
+            get
+            {
+                return _story_content;
+            }
+            set
+            {
+                _story_content = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _story_user_name;
+        public string story_user_name
+        {
+            get
+            {
+                return _story_user_name;
+            }
+            set
+            {
+                _story_user_name = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _story_input_date;
+        public string story_input_date
+        {
+            get
+            {
+                return _story_input_date;
+            }
+            set
+            {
+                _story_input_date = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         
 
     }

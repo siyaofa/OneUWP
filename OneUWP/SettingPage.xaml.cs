@@ -30,7 +30,7 @@ namespace OneUWP
         private void NightModelToggleButton_Toggled(object sender, RoutedEventArgs e)
         {
             settingPageViewModel.ExchangeDarkMode((sender as ToggleSwitch).IsOn);
-            BackgroundTaskAction.ShowToastNotification("OneUWPlogo.png", "夜间模式已经更改");
+           // BackgroundTaskAction.ShowToastNotification("OneUWPlogo.png", "夜间模式已经更改");
         }
 
         private async void SendEmailTo(object sender, TappedRoutedEventArgs e)

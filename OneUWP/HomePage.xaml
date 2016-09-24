@@ -16,24 +16,21 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <!--调试时显示错误信息-->
-        <TextBlock Grid.Row="0" Name="InfoTextBlock" Text="电脑端"/>
+        <TextBlock Grid.Row="0" Name="InfoTextBlock"/>
         <FlipView Grid.Row="1" Name="homeFlipView" 
-              Background="White"
               UseTouchAnimationsForAllNavigation="False"
               ItemsSource="{x:Bind homePageData}">
             <FlipView.ItemTemplate>
                 <DataTemplate x:DataType="data:HomePageModel">
                     <ListView  SelectionMode="None">
-                        <Image Source="{x:Bind writeableBitmap}" Name="CoverImage" Stretch="UniformToFill"/>
-                        <TextBlock Text="{x:Bind author}"  Name="AuthorTextBlock" TextWrapping="Wrap" Margin="0,20,0,0" HorizontalAlignment="Right" FontWeight="Black"/>
-                        <TextBlock Text="{x:Bind date}"  Name="ImageTimeTextBlock" TextWrapping="Wrap" Margin="0,20,0,0" HorizontalAlignment="Right"/>
-                        <TextBlock Text="{x:Bind content}"  Name="ContentTextBlock" TextWrapping="Wrap" Margin="0,20,0,0"/>
+                        <Image Source="{x:Bind writeableBitmap}"  Stretch="UniformToFill"/>
+                        <TextBlock Text="{x:Bind author}" TextWrapping="Wrap" Margin="0,20,0,0" HorizontalAlignment="Right"/>
+                        <TextBlock Text="{x:Bind date}"  TextWrapping="Wrap" Margin="0,20,0,0" HorizontalAlignment="Right"/>
+                        <TextBlock Text="{x:Bind content}"  TextWrapping="Wrap" Margin="0,20,0,0"/>
                     </ListView>
                 </DataTemplate>
             </FlipView.ItemTemplate>
         </FlipView>
- 
-
         <ProgressRing Name="progressRing" Width="60" Height="60" Visibility="Collapsed" IsActive="True"/>
     </Grid>
 </Page>

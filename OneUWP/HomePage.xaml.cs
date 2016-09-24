@@ -66,10 +66,6 @@ namespace OneUWP
                         content = hp_detail.data.hp_content
                     }
                     );
-
-
-                InfoTextBlock.Visibility = Visibility.Collapsed;
-                homePageViewModel.ChangeProgressRing(Visibility.Collapsed);
             }
 
         }

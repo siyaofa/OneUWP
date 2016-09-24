@@ -14,10 +14,78 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <!--MediaElement Source="http://h.xiami.com/one-share.html?id=1773790811" AutoPlay="True"/-->
-        <Image Source="{x:Bind musicPageViewModel.wb,Mode=OneWay}" Stretch="UniformToFill" />
+        <TextBlock Name="InfoTextBlock"/>
         <ListView Grid.Row="1"
                             SelectionMode="None">
-            <TextBlock Text="{x:Bind musicPageViewModel.lyric,Mode=OneWay}" TextWrapping="Wrap"/>
+            <Image Source="{x:Bind musicPageViewModel.cover,Mode=OneWay}" Stretch="UniformToFill" />
+            <StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="9*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Image Grid.Column="0"
+                           Grid.RowSpan="2"
+                           Source="{x:Bind musicPageViewModel.author_web_url,Mode=OneWay}" 
+                           Stretch="UniformToFill" 
+                            />
+                    <TextBlock Grid.Row="0" Grid.Column="1"
+                        Text="{x:Bind musicPageViewModel.author_user_name,Mode=OneWay}" TextWrapping="Wrap"/>
+                    <TextBlock Grid.Row="1" Grid.Column="1"
+                        Text="{x:Bind musicPageViewModel.author_desc,Mode=OneWay}" TextWrapping="Wrap" />
+                </Grid>
+                <TextBlock Text="{x:Bind musicPageViewModel.title,Mode=OneWay}" TextWrapping="Wrap" FontWeight="Bold"/>
+            </StackPanel>
+
+            <Pivot IsEnabled="True">
+                <PivotItem>
+                    <PivotItem.Header>
+                        <TextBlock Text="故事"/>
+                    </PivotItem.Header>
+                    <ListView SelectionMode="None">
+                        <TextBlock Text="{x:Bind musicPageViewModel.story_title,Mode=OneWay}" TextWrapping="Wrap"/>
+                        <TextBlock Text="{x:Bind musicPageViewModel.story_author,Mode=OneWay}" TextWrapping="Wrap"/>
+                        <TextBlock Text="{x:Bind musicPageViewModel.story,Mode=OneWay}" TextWrapping="Wrap"/>
+                    </ListView>
+
+                </PivotItem>
+                <PivotItem>
+                    <PivotItem.Header>
+                        <TextBlock Text="歌词"/>
+                    </PivotItem.Header>
+                    <TextBlock Text="{x:Bind musicPageViewModel.lyric,Mode=OneWay}" TextWrapping="Wrap"/>
+                </PivotItem>
+                <PivotItem>
+                    <PivotItem.Header>
+                        <TextBlock Text="歌曲信息"/>
+                    </PivotItem.Header>
+                    <TextBlock Text="{x:Bind musicPageViewModel.info,Mode=OneWay}" TextWrapping="Wrap"/>
+                </PivotItem>
+            </Pivot>
+            <TextBlock Text="{x:Bind musicPageViewModel.charge_edt,Mode=OneWay}" TextWrapping="Wrap"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <TextBlock Text="点赞："/>
+                    <TextBlock Text="{x:Bind musicPageViewModel.praisenum,Mode=OneWay}" />
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <TextBlock Text="分享："/>
+                    <TextBlock Text="{x:Bind musicPageViewModel.sharenum,Mode=OneWay}" />
+                </StackPanel>
+                <StackPanel Grid.Column="2" Orientation="Horizontal">
+                    <TextBlock Text="评论："/>
+                    <TextBlock Text="{x:Bind musicPageViewModel.commentnum,Mode=OneWay}" />
+                </StackPanel>
+            </Grid>
         </ListView>
     </Grid>
 </Page>

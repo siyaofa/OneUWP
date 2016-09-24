@@ -90,6 +90,6 @@ namespace OneUWP.Http
         /// <summary>
         /// 音乐内容
         /// </summary>
-        public static string music_detail = "http://v3.wufazhuce.com:8000/api/music/detail/1032?";
+        public static string music_detail = "http://v3.wufazhuce.com:8000/api/music/detail/";
     }
 }

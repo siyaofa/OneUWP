@@ -34,13 +34,10 @@ namespace OneUWP
         internal static bool isFirstLoad = true;
         internal static DateTime today = DateTime.Today;
         internal static DateTime currentDate = today;
-        internal static List<Sheet> homepageSheet;
-        internal static List<Sheet> questionpageSheet;
-        internal static ElementTheme appTheme = ElementTheme.Light;
         //最新的列表
       
         internal static reading_idlist readingIDList;
-        internal static music_idlist musicIDList;
+        
 
 
 
@@ -56,7 +53,7 @@ namespace OneUWP
         {
           
             readingIDList = await Http.APIService.Get_reading_idlist();
-            musicIDList = await Http.APIService.Get_music_idlist();
+           
         }
 
 

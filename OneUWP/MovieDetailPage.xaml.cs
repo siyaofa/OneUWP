@@ -1,4 +1,5 @@
 ﻿using OneUWP.Http;
+using OneUWP.Http.Data;
 using OneUWP.Tools;
 using OneUWP.ViewModels;
 using System;
@@ -27,6 +28,7 @@ namespace OneUWP
     {
         public MovieDetailPageViewModel movieDetailPageViewModel = new MovieDetailPageViewModel();
         public string movieId;
+        public movie_story _movie_story;
 
         public MovieDetailPage()
         {
@@ -44,20 +46,30 @@ namespace OneUWP
             PageFresh();
         }
 
-        private async void PageFresh()
+        public async void PageFresh()
         {
             var _movie_detail = await APIService.Get_movie_detail(movieId);
-            if (_movie_detail != null)
-            {
-                movieDetailPageViewModel.video = _movie_detail.data.video;
-                movieDetailPageViewModel.title = _movie_detail.data.title;
-                movieDetailPageViewModel.keywords = _movie_detail.data.keywords;
-                movieDetailPageViewModel.info = _movie_detail.data.info;
-                movieDetailPageViewModel.detailcover =await ImageOperation.GetImage(_movie_detail.data.detailcover);
-            }
+            movieDetailPageViewModel.video = _movie_detail.data.video;
+            movieDetailPageViewModel.title = _movie_detail.data.title;
+            movieDetailPageViewModel.keywords = _movie_detail.data.keywords;
+            movieDetailPageViewModel.info = _movie_detail.data.info;
+            movieDetailPageViewModel.detailcover = await ImageOperation.GetImage(_movie_detail.data.detailcover);
+
             myMedia.Source = new Uri(movieDetailPageViewModel.video);
+
+            _movie_story = await APIService.Get_movie_story(movieId);
+            movieDetailPageViewModel.story_web_url = await ImageOperation.GetImage(_movie_story.data.data[0].user.web_url);
+            movieDetailPageViewModel.story_input_date = _movie_story.data.data[0].input_date;
+            movieDetailPageViewModel.story_user_name= _movie_story.data.data[0].user.user_name;
+            movieDetailPageViewModel.story_content = _movie_story.data.data[0].content;
+
+
+
         }
 
-     
+        public void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(MovieStoryPage), movieId);
+        }
     }
 }

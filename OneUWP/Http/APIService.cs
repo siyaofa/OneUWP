@@ -124,6 +124,22 @@ namespace OneUWP.Http
             var data = (movie_detail)serializer.ReadObject(ms);
             return data;
         }
+        public async static Task<movie_story> Get_movie_story(string id)
+        {
+            var httpClient = new HttpClient();
+            //需要根据不同的需求选择
+            //"/story/0/0?"
+            //"/story/1/0?"
+            string url = "http://v3.wufazhuce.com:8000/api/movie/" + id + "/story/0/0?";
+            var response = await httpClient.GetAsync(url);
+            var result = await response.Content.ReadAsStringAsync();
+            var serializer = new DataContractJsonSerializer(typeof(movie_story));
+            var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
+            var data = (movie_story)serializer.ReadObject(ms);
+            return data;
+        }
+
+        
         /// <summary>
         /// 音乐的评论
         /// </summary>
@@ -140,10 +156,11 @@ namespace OneUWP.Http
         /// <summary>
         /// 音乐内容
         /// </summary>
-        public async static Task<music_detail> Get_music_detail()
+        public async static Task<music_detail> Get_music_detail(string id)
         {
             var httpClient = new HttpClient();
-            var response = await httpClient.GetAsync(ServiceURL.music_detail);
+            string url = ServiceURL.music_detail + id + '?';
+            var response = await httpClient.GetAsync(url);
             var result = await response.Content.ReadAsStringAsync();
             var serializer = new DataContractJsonSerializer(typeof(music_detail));
             var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));

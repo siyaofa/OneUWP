@@ -40,21 +40,20 @@ namespace OneUWP
             if (x > xR)//判断滑动的距离是否符合条件
             {
                 App.currentDate = App.currentDate.AddDays(1);
-                PageFresh(App.currentDate);
+                PageFresh();
             }
             else if (x < -xR)
             {
                 App.currentDate = App.currentDate.AddDays(-1);
-                PageFresh(App.currentDate);
+                PageFresh();
             }
             x = 0;
         }
 
-        private async void Page_Loaded(object sender, RoutedEventArgs e)
+        private  void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            if (App.questionpageSheet == null)
-            { App.questionpageSheet = await GetDateSheets.GetQuestionpageSheet(); }
-            PageFresh(App.currentDate);
+
+            PageFresh();
         }
 
         private void ContentShare()
@@ -72,7 +71,7 @@ namespace OneUWP
             request.Data.Properties.Description = "A demonstration on how to share";
         }
 
-        private async void PageFresh(DateTime date)
+        private async void PageFresh()
         {
             InfoTextBlock.Visibility = Visibility.Visible;
             InfoTextBlock.Text = "请稍等";

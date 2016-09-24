@@ -110,6 +110,7 @@
     <Compile Include="Http\Data\hp_idlist.cs" />
     <Compile Include="Http\Data\movie_detail.cs" />
     <Compile Include="Http\Data\movie_list.cs" />
+    <Compile Include="Http\Data\movie_story.cs" />
     <Compile Include="Http\Data\music_comment.cs" />
     <Compile Include="Http\Data\music_detail.cs" />
     <Compile Include="Http\Data\music_idlist.cs" />
@@ -133,18 +134,14 @@
     <Compile Include="Models\EssayPageModel.cs" />
     <Compile Include="Models\HomePageModel.cs" />
     <Compile Include="Models\MoviePageModel.cs" />
+    <Compile Include="Models\MovieStoryPageModel.cs" />
     <Compile Include="Models\MusicPageModel.cs" />
     <Compile Include="Models\ReadingPageModel.cs" />
     <Compile Include="Model\GetDateSheets.cs" />
-    <Compile Include="Model\GetIdFromDate.cs" />
     <Compile Include="Model\HomepageData.cs" />
-    <Compile Include="Model\HomeRootObject.cs" />
     <Compile Include="Model\ImageOperation.cs" />
     <Compile Include="Model\MovieData.cs" />
     <Compile Include="Model\NotificationUpdate.cs" />
-    <Compile Include="Model\OneHome.cs" />
-    <Compile Include="Model\OneProxy.cs" />
-    <Compile Include="Model\QuestionRootObject.cs" />
     <Compile Include="Model\Sheet.cs" />
     <Compile Include="Model\XmlUtil.cs" />
     <Compile Include="MovieDetailPage.xaml.cs">
@@ -163,7 +160,6 @@
     </Compile>
     <Compile Include="SetDatePage.xaml.cs" />
     <Compile Include="SettingPage.xaml.cs" />
-    <Compile Include="TestPage.xaml.cs" />
     <Compile Include="Tools\BackgroundTaskAction.cs" />
     <Compile Include="Tools\Clip.cs" />
     <Compile Include="Tools\DispatcherManager.cs" />
@@ -243,10 +239,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="DeviceFamily-Mobile\HomePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="DeviceFamily-Mobile\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -300,10 +292,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="SettingPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="TestPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

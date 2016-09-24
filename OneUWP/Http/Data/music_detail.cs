@@ -57,7 +57,7 @@ namespace OneUWP.Http.Data
             [DataMember]
             public Author author { get; set; }
             [DataMember]
-            public object story_author { get; set; }
+            public Story_Author story_author { get; set; }
             [DataMember]
             public int sharenum { get; set; }
             [DataMember]
@@ -75,8 +75,23 @@ namespace OneUWP.Http.Data
             [DataMember]
             public string desc { get; set; }
         }
+        [DataContract]
+        public class Story_Author
+        {
+            [DataMember]
+            public string user_id { get; set; }
+            [DataMember]
+            public string user_name { get; set; }
+            [DataMember]
+            public string web_url { get; set; }
+        }
 
     }
 
 
 }
+
+
+
+
+

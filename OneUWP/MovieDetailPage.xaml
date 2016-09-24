@@ -15,24 +15,76 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Name="InfoTextBlock"/>
         <ListView Grid.Row="1" Name="QuestionListView" SelectionMode="None">
-            <!--  <Image Source="{Binding movieDetailPageViewModel.detailcover,Mode=OneWay}"
-                   Name="TheImage" 
-                   Stretch="Uniform"/>-->
             <MediaElement Name="myMedia" 
                           AutoPlay="False"
                           AreTransportControlsEnabled="True">
                 <MediaElement.TransportControls>
                     <MediaTransportControls IsCompact="True"
                                             IsEnabled="True"
-                                            IsStopButtonVisible="True"/>
+                                            IsStopButtonVisible="False"
+                                            IsFastForwardButtonVisible="False"
+                                            IsFastRewindButtonVisible="False"
+                                            IsVolumeButtonVisible="False"/>
                 </MediaElement.TransportControls>
             </MediaElement>
             <StackPanel Orientation="Vertical" ManipulationMode="System,TranslateX" >
                 <Image Source="{x:Bind movieDetailPageViewModel.detailcover,Mode=OneWay}" Stretch="UniformToFill" />
-                <TextBlock Text="{x:Bind movieDetailPageViewModel.title,Mode=OneWay}" TextWrapping="Wrap" Margin="0,20,0,0" />
-                <TextBlock Text="{x:Bind movieDetailPageViewModel.keywords,Mode=OneWay}" TextWrapping="Wrap" Margin="0,20,0,0" />
-                <TextBlock Text="{x:Bind movieDetailPageViewModel.info,Mode=OneWay}" TextWrapping="Wrap" Margin="0,20,0,0" />
+               
             </StackPanel>
+            <Button Content="全部电影故事" Click="Button_Click" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="9*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Image Grid.Column="0"
+                           Grid.RowSpan="2"
+                           Source="{x:Bind movieDetailPageViewModel.story_web_url,Mode=OneWay}" 
+                           Stretch="UniformToFill" 
+                            />
+                <TextBlock Grid.Row="0" Grid.Column="1"
+                        Text="{x:Bind movieDetailPageViewModel.story_input_date,Mode=OneWay}" TextWrapping="Wrap"/>
+                <TextBlock Grid.Row="1" Grid.Column="1"
+                        Text="{x:Bind movieDetailPageViewModel.story_user_name,Mode=OneWay}" TextWrapping="Wrap" />
+
+                <TextBlock Grid.Row="2" Grid.Column="1"
+                           Text="{x:Bind movieDetailPageViewModel.title,Mode=OneWay}" TextWrapping="Wrap" Margin="0,20,0,0" />
+                <TextBlock Grid.Row="3" Grid.Column="1"
+                        Text="{x:Bind movieDetailPageViewModel.story_content,Mode=OneWay}" TextWrapping="Wrap" />
+            </Grid>
+            <Pivot IsEnabled="True">
+                <PivotItem>
+                    <PivotItem.Header>
+                        <TextBlock Text="一个·电影表"/>
+                    </PivotItem.Header>
+                    <TextBlock Text="{x:Bind movieDetailPageViewModel.keywords,Mode=OneWay}" TextWrapping="Wrap" Margin="0,20,0,0" />
+                </PivotItem>
+                <PivotItem>
+                    <PivotItem.Header>
+                        <TextBlock Text="剧照"/>
+                    </PivotItem.Header>
+                    <ListView >
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+
+                    </ListView>
+                </PivotItem>
+                <PivotItem>
+                    <PivotItem.Header>
+                        <TextBlock Text="影片信息"/>
+                    </PivotItem.Header>
+                    <TextBlock Text="{x:Bind movieDetailPageViewModel.info,Mode=OneWay}" TextWrapping="Wrap"/>
+                </PivotItem>
+            </Pivot>
         </ListView>
     </Grid>
 </Page>

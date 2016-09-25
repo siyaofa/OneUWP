@@ -7,10 +7,10 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace OneUWP.Models
 {
-    public class MoviePageModel
+   public class HomeMonthPageModel
     {
-        public WriteableBitmap wb { get; set; }
-        public string id { get; set; }
-        public string score { get; set; }
+        public WriteableBitmap wb { set; get; }
+        public string date { set; get; }
+        public string hpId { set; get; }
     }
 }

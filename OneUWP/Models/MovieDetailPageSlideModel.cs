@@ -7,10 +7,8 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace OneUWP.Models
 {
-    public class MoviePageModel
+    public class MovieDetailPageSlideModel
     {
-        public WriteableBitmap wb { get; set; }
-        public string id { get; set; }
-        public string score { get; set; }
+        public WriteableBitmap slide { get; set; }
     }
 }

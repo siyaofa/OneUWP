@@ -16,7 +16,11 @@
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <PackageCertificateKeyFile>OneUWP_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>OneUWP_StoreKey.pfx</PackageCertificateKeyFile>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
+    <PackageCertificateThumbprint>BABDAD433DC3EEC3A24281A1FA7DB7194478E168</PackageCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -89,6 +93,7 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <None Include="OneUWP_StoreKey.pfx" />
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
@@ -99,6 +104,9 @@
     <Compile Include="EssayPage.xaml.cs">
       <DependentUpon>EssayPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HomeMonthPage.xaml.cs">
+      <DependentUpon>HomeMonthPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HomePage.xaml.cs" />
     <Compile Include="Http\APIBaseService.cs" />
     <Compile Include="Http\APIService.cs" />
@@ -108,6 +116,7 @@
     <Compile Include="Http\Data\essay_detail.cs" />
     <Compile Include="Http\Data\hp_detail.cs" />
     <Compile Include="Http\Data\hp_idlist.cs" />
+    <Compile Include="Http\Data\hp_month.cs" />
     <Compile Include="Http\Data\movie_detail.cs" />
     <Compile Include="Http\Data\movie_list.cs" />
     <Compile Include="Http\Data\movie_story.cs" />
@@ -132,10 +141,12 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\EssayPageModel.cs" />
+    <Compile Include="Models\HomeMonthPageModel.cs" />
     <Compile Include="Models\HomePageModel.cs" />
     <Compile Include="Models\MoviePageModel.cs" />
     <Compile Include="Models\MovieStoryPageModel.cs" />
     <Compile Include="Models\MusicPageModel.cs" />
+    <Compile Include="Models\MovieDetailPageSlideModel.cs" />
     <Compile Include="Models\ReadingPageModel.cs" />
     <Compile Include="Model\GetDateSheets.cs" />
     <Compile Include="Model\HomepageData.cs" />
@@ -154,6 +165,9 @@
     <Compile Include="MusicPage.xaml.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuestionPage.xaml.cs" />
+    <Compile Include="ReadingMonthPage.xaml.cs">
+      <DependentUpon>ReadingMonthPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ReadingPage.xaml.cs" />
     <Compile Include="SerialPage.xaml.cs">
       <DependentUpon>SerialPage.xaml</DependentUpon>
@@ -225,6 +239,7 @@
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
     <Content Include="Assets\XMLSheets\homepageSheet.XML" />
     <Content Include="Assets\XMLSheets\questionpageSheet.XML" />
+    <None Include="Package.StoreAssociation.xml" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -244,6 +259,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="EssayPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HomeMonthPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -278,6 +297,10 @@
     <Page Include="QuestionPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ReadingMonthPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ReadingPage.xaml">
       <Generator>MSBuild:Compile</Generator>

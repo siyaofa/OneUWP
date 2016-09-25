@@ -6,8 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Loaded="Page_Loaded"
+    xmlns:data="using:OneUWP.Models"
     mc:Ignorable="d">
-
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -69,13 +69,20 @@
                     <PivotItem.Header>
                         <TextBlock Text="剧照"/>
                     </PivotItem.Header>
-                    <ListView >
-                        <ListView.ItemContainerStyle>
-                            <Style TargetType="ListViewItem">
+                    <ListView 
+                        ItemsSource="{x:Bind slide}">
+                        <!--<ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
                                 <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                             </Style>
                         </ListView.ItemContainerStyle>
-
+                            -->
+                        
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="data:MovieDetailPageSlideModel">
+                                <Image Source="{x:Bind slide}" Stretch="UniformToFill"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
                     </ListView>
                 </PivotItem>
                 <PivotItem>

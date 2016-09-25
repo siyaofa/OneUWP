@@ -72,6 +72,22 @@ namespace OneUWP.Http
             var data = (hp_detail)serializer.ReadObject(ms);
             return data;
         }
+        /// <summary>
+        /// 首页月份列表
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public async static Task<hp_month> Get_hp_month(string date)
+        {
+            var httpClient = new HttpClient();
+            var url = "http://v3.wufazhuce.com:8000/api/hp/bymonth/" + date + "-01%2000:00:00?";
+            var response = await httpClient.GetAsync(url);
+            var result = await response.Content.ReadAsStringAsync();
+            var serializer = new DataContractJsonSerializer(typeof(hp_month));
+            var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
+            var data = (hp_month)serializer.ReadObject(ms);
+            return data;
+        }
 
         public async static Task<serial_detail> Get_serial_detail(string id)
         {

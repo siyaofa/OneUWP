@@ -1,9 +1,11 @@
 ﻿using OneUWP.Http;
 using OneUWP.Http.Data;
+using OneUWP.Models;
 using OneUWP.Tools;
 using OneUWP.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -27,6 +29,7 @@ namespace OneUWP
     public sealed partial class MovieDetailPage : Page
     {
         public MovieDetailPageViewModel movieDetailPageViewModel = new MovieDetailPageViewModel();
+        public ObservableCollection<MovieDetailPageSlideModel> slide = new ObservableCollection<MovieDetailPageSlideModel>();
         public string movieId;
         public movie_story _movie_story;
 
@@ -54,8 +57,11 @@ namespace OneUWP
             movieDetailPageViewModel.keywords = _movie_detail.data.keywords;
             movieDetailPageViewModel.info = _movie_detail.data.info;
             movieDetailPageViewModel.detailcover = await ImageOperation.GetImage(_movie_detail.data.detailcover);
+            for (int i = 0; i < _movie_detail.data.photo.Count(); i++)
+                slide.Add(new MovieDetailPageSlideModel { slide = await ImageOperation.GetImage(_movie_detail.data.photo[i]) });
 
-            myMedia.Source = new Uri(movieDetailPageViewModel.video);
+
+                myMedia.Source = new Uri(movieDetailPageViewModel.video);
 
             _movie_story = await APIService.Get_movie_story(movieId);
             movieDetailPageViewModel.story_web_url = await ImageOperation.GetImage(_movie_story.data.data[0].user.web_url);
@@ -63,7 +69,7 @@ namespace OneUWP
             movieDetailPageViewModel.story_user_name= _movie_story.data.data[0].user.user_name;
             movieDetailPageViewModel.story_content = _movie_story.data.data[0].content;
 
-
+           
 
         }
 

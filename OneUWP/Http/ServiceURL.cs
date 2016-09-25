@@ -28,6 +28,10 @@ namespace OneUWP.Http
         /// </summary>
         public static string hp_detail = "http://v3.wufazhuce.com:8000/api/hp/detail/";
         /// <summary>
+        /// 首页每月内容
+        /// </summary>
+        public static string hp_month = "http://v3.wufazhuce.com:8000/api/hp/bymonth/2016-07-01%2000:00:00?";
+        /// <summary>
         /// 短篇评论
         /// </summary>
         public static string essay_comment = "http://v3.wufazhuce.com:8000/api/comment/praiseandtime/essay/1533/0?";

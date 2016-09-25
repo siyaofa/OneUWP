@@ -47,7 +47,11 @@ namespace OneUWP
 
             for (int i = 0; i < _movie_list.data.Count(); i++)
             {
-                ImageCollection.Add(new MoviePageModel { wb = await ImageOperation.GetImage(_movie_list.data[i].cover),id=_movie_list.data[i].id });
+                ImageCollection.Add(new MoviePageModel {
+                    wb = await ImageOperation.GetImage(_movie_list.data[i].cover),
+                    id =_movie_list.data[i].id,
+                    score=_movie_list.data[i].score
+                });
             }
         }
 

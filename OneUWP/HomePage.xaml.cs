@@ -36,7 +36,8 @@ namespace OneUWP
         public double x;
         public HomePageViewModel homePageViewModel;
         public ObservableCollection<HomePageModel> homePageData = new ObservableCollection<HomePageModel>();
-        internal static Http.Data.hp_idlist hpIDList;
+        public static Http.Data.hp_idlist hpIDList;
+        public string hpId;
         public HomePage()
         {
             InitializeComponent();
@@ -44,16 +45,9 @@ namespace OneUWP
 
         }
 
-
-
-        public async void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            hpIDList = await Http.APIService.Get_hp_idlist();
-            PageFresh();
-        }
-
         public async void PageFresh()
         {
+            hpIDList = await Http.APIService.Get_hp_idlist();
             for (int i = 0; i < hpIDList.data.Count() - 1; i++)
             {
                 var hp_detail = await APIService.Get_hp_detail(hpIDList.data[i]);
@@ -69,7 +63,29 @@ namespace OneUWP
             }
 
         }
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            string hpId = (string)e.Parameter;
+            if (!string.IsNullOrEmpty(hpId))
+            {
+                homePageData.Clear();
+                var hp_detail = await APIService.Get_hp_detail(hpId);
+                homePageData.Add(
+                    new HomePageModel
+                    {
+                        writeableBitmap = await ImageOperation.GetImage(hp_detail.data.hp_img_url),
+                        author = hp_detail.data.hp_author,
+                        date = hp_detail.data.hp_makettime,
+                        content = hp_detail.data.hp_content
+                    }
+                    );
+            }
+            else
+            {
+                PageFresh();
+            }
 
+        }
 
 
     }

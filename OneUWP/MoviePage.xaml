@@ -26,7 +26,11 @@
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="data:MoviePageModel">
                     <StackPanel>
-                        <TextBlock Text="{x:Bind id}"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="最新得分 :   "/>
+                            <TextBlock Text="{x:Bind score}"/>
+                        </StackPanel>
+                        
                         <Image  Source="{x:Bind wb}"/>
                     </StackPanel>
                 </DataTemplate>

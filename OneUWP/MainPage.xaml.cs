@@ -101,12 +101,13 @@ namespace OneUWP
             await myFrame.Blur(value: 0).StartAsync();
         }
 
-        private async void DatePickerFlyout_DatePicked(DatePickerFlyout sender, DatePickedEventArgs args)
+        private  void DatePickerFlyout_DatePicked(DatePickerFlyout sender, DatePickedEventArgs args)
         {
-
-            App.currentDate = args.NewDate.DateTime;
-            myFrame.Navigate(typeof(HomePage));
             AppTitle.Text = "One 一个";
+            var date = args.NewDate.DateTime.ToString("yyyy-MM");
+            myFrame.Navigate(typeof(HomeMonthPage),date);
+            // myFrame.Navigate(typeof(HomePage));
+
             //if (AnalyticsInfo.VersionInfo.DeviceFamily == "Windows.Mobile")
             //{
             //    await myFrame.Blur(value: 0).StartAsync();
@@ -116,7 +117,7 @@ namespace OneUWP
             //    await myFrame.Blur(value: 0).StartAsync();
             //}
 
-            await myFrame.Blur(value: 0).StartAsync();
+            // await myFrame.Blur(value: 0).StartAsync();
         }
 
 
@@ -161,8 +162,9 @@ namespace OneUWP
             else if (item == "SetDateListBoxItem")
             {
                 AppTitle.Text = "选择日期";
-                await myFrame.Blur(duration: 10, delay: 0, value: 5).StartAsync();
+                //await myFrame.Blur(duration: 10, delay: 0, value: 5).StartAsync();
                 DatePickerFlyout datePickerFlyout = new DatePickerFlyout();
+                datePickerFlyout.DayVisible = false;
                 datePickerFlyout.MinYear = DateTimeOffset.Now.AddYears(-4);
                 datePickerFlyout.MaxYear = DateTimeOffset.Now;
                 datePickerFlyout.Placement = FlyoutPlacementMode.Full;
@@ -170,7 +172,12 @@ namespace OneUWP
                 datePickerFlyout.Closed += DatePickerFlyout_Closed;
                 datePickerFlyout.DatePicked += DatePickerFlyout_DatePicked;
             }
+
+          //  AppTitle.Text = myFrame.CurrentSourcePageType.ToString();
+
         }
+
+
 
 
 

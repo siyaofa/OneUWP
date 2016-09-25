@@ -35,7 +35,6 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" Background="SkyBlue">
-            <Button Visibility="Collapsed" Name="HamburgerButton" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" FontSize="24" Click="HamburgerButton_Click" RelativePanel.AlignLeftWithPanel="True"/>
             <TextBlock HorizontalAlignment="Center"  Name="AppTitle" Text="One 一个" FontWeight="Bold"  FontSize="24"  Margin="20,0,0,0" />
         </Grid>
         <RelativePanel Grid.Row="1">
@@ -54,8 +53,10 @@
                 CompactPaneLength="44"
                    HorizontalAlignment="Left">
             <SplitView.Pane>
-                <ListBox SelectionMode="Single" Name="OneListBox" SelectionChanged="ListBox_SelectionChanged">
-                </ListBox>
+                <ListView 
+                        SelectionMode="None" 
+                        IsItemClickEnabled="True"
+                        ItemClick="ListView_ItemClick"/>
             </SplitView.Pane>
             <SplitView.Content>
                 <StackPanel/>

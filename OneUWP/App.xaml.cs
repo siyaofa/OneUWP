@@ -18,6 +18,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using OneUWP.Http.Data;
+using Windows.UI.Core;
 
 namespace OneUWP
 {
@@ -35,9 +36,9 @@ namespace OneUWP
         internal static DateTime today = DateTime.Today;
         internal static DateTime currentDate = today;
         //最新的列表
-      
+
         internal static reading_idlist readingIDList;
-        
+
 
 
 
@@ -51,9 +52,9 @@ namespace OneUWP
 
         private async void GetIdList()
         {
-          
+
             readingIDList = await Http.APIService.Get_reading_idlist();
-           
+
         }
 
 
@@ -66,6 +67,8 @@ namespace OneUWP
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
+
+
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
             if (rootFrame == null)
@@ -94,6 +97,8 @@ namespace OneUWP
                 Window.Current.Activate();
             }
         }
+
+     
 
         /// <summary>
         /// Invoked when Navigation to a certain page fails

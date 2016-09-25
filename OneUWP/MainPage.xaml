@@ -22,8 +22,12 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <RelativePanel x:Name="TitleRelativePanel" Background="SkyBlue">
-            <Button Name="HamburgerButton" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" FontSize="24" Click="HamburgerButton_Click" RelativePanel.AlignLeftWithPanel="True"/>
-            <TextBlock  Name="AppTitle" Text="One 一个" FontWeight="Bold" FontSize="24" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="20,0,0,0" />
+            <TextBlock  Name="AppTitle" 
+                        Text="One 一个" 
+                         FontWeight="Bold"
+                         FontSize="24"
+                         RelativePanel.AlignHorizontalCenterWithPanel="True" 
+                         Margin="20,0,0,0" />
         </RelativePanel>
         <SplitView Grid.Row="1" 
                    Name="mySplitView" 
@@ -33,54 +37,55 @@
                    HorizontalAlignment="Left">
             <SplitView.Pane>
                 <RelativePanel>
-                    <ListBox SelectionMode="Single" Name="OneListBox" SelectionChanged="ListBox_SelectionChanged">
-                        <ListBoxItem Name="HomeListBoxItem" >
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="24" Text="&#xE80F;" />
-                                <TextBlock Text="图片" FontSize="20" Margin="20,0,0,0" />
-                            </StackPanel>
-                        </ListBoxItem>
-                        <ListBoxItem Name="ReadingListBoxItem">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="24" Text="&#xE8F1;" />
-                                <TextBlock Text="阅读" FontSize="20" Margin="20,0,0,0" />
-                            </StackPanel>
-                        </ListBoxItem>
-                        <ListBoxItem Name="MusicListBoxItem">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="24" Text="&#xE8D6;" />
-                                <TextBlock Text="音乐" FontSize="20" Margin="20,0,0,0" />
-                            </StackPanel>
-                        </ListBoxItem>
-                        <ListBoxItem Name="MovieListBoxItem">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="24" Text="&#xE714;" />
-                                <TextBlock Text="电影" FontSize="20" Margin="20,0,0,0" />
-                            </StackPanel>
-                        </ListBoxItem>
-                    </ListBox>
-                    <ListBox RelativePanel.AlignBottomWithPanel="True" SelectionChanged="ListBox_SelectionChanged">
-                        <ListBoxItem Name="SetDateListBoxItem">
-                            <StackPanel Orientation="Horizontal"  RelativePanel.AlignBottomWithPanel="True">
-                                <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="24" Text="&#xE8F5;" />
-                                <TextBlock Text="日期" FontSize="20" Margin="20,0,0,0" />
-                            </StackPanel>
-                        </ListBoxItem>
-                        <ListBoxItem Name="SettingListBoxItem">
-                            <StackPanel Orientation="Horizontal"  RelativePanel.AlignBottomWithPanel="True">
-                                <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="24" Text="&#xE115;" />
-                                <TextBlock Text="关于" FontSize="20" Margin="20,0,0,0" />
-                            </StackPanel>
-                        </ListBoxItem>
-                        <!--<ListBoxItem Name="TestListBoxItem">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock FontSize="24" Text="测" />
-                            <TextBlock Text="API测试" FontSize="20" Margin="20,0,0,0" />
+                    <ListView 
+                        SelectionMode="None" 
+                        IsItemClickEnabled="True"
+                        ItemClick="ListView_ItemClick">
+                        <StackPanel Name="HamburgerButton"
+                                    Orientation="Horizontal">
+                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="24" Text="&#xE700;" />
                         </StackPanel>
-                    </ListBoxItem> -->
-                    </ListBox>
+                        <StackPanel Name="Home"
+                                Orientation="Horizontal">
+                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="24" Text="&#xE80F;" />
+                            <TextBlock Text="图片" FontSize="20" Margin="20,0,0,0" />
+                        </StackPanel>
+                        <StackPanel Name="Reading"
+                                        Orientation="Horizontal">
+                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="24" Text="&#xE8F1;" />
+                            <TextBlock Text="阅读" FontSize="20" Margin="20,0,0,0" />
+                        </StackPanel>
+                        <StackPanel Name="Music"
+                                Orientation="Horizontal">
+                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="24" Text="&#xE8D6;" />
+                            <TextBlock Text="音乐" FontSize="20" Margin="20,0,0,0" />
+                        </StackPanel>
+                        <StackPanel Name="Movie"
+                                        Orientation="Horizontal">
+                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="24" Text="&#xE714;" />
+                            <TextBlock Text="电影" FontSize="20" Margin="20,0,0,0" />
+                        </StackPanel>
+                    </ListView>
+                    <ListView RelativePanel.AlignBottomWithPanel="True" 
+                              SelectionMode="None" 
+                              IsItemClickEnabled="True"
+                              ItemClick="ListView_ItemClick">
+                        <StackPanel Name="SetDate"
+                                    Orientation="Horizontal"  
+                                    RelativePanel.AlignBottomWithPanel="True">
+                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="24" Text="&#xE8F5;" />
+                            <TextBlock Text="日期" FontSize="20" Margin="20,0,0,0" />
+                        </StackPanel>
+                        <StackPanel Name="Setting"
+                                    Orientation="Horizontal"  
+                                    RelativePanel.AlignBottomWithPanel="True">
+                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="24" Text="&#xE115;" />
+                            <TextBlock Text="关于" FontSize="20" Margin="20,0,0,0" />
+                        </StackPanel>
+                    </ListView>
                 </RelativePanel>
             </SplitView.Pane>
+
             <SplitView.Content>
                 <RelativePanel>
                     <Frame Grid.Row="1" Name="myFrame"/>

@@ -39,9 +39,22 @@ namespace OneUWP
         {
             this.InitializeComponent();
             SystemNavigationManager.GetForCurrentView().BackRequested += MainPage_BackRequested;
+            //订阅导航完成时事件
+            myFrame.Navigated += myFrame_Navigated;
             this.DataContext = mainPageViewModel = new MainPageViewModel();
             DispatcherManager.Current.Dispatcher = Dispatcher;
         }
+
+        private void myFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+
+            // 每次完成导航 确定下是否显示系统后退按钮
+            // ReSharper disable once PossibleNullReferenceException
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+                myFrame.BackStack.Any()
+                ? AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
+        }
+
         /// <summary>
         /// 订阅后退事件
         /// </summary>
@@ -101,11 +114,11 @@ namespace OneUWP
             await myFrame.Blur(value: 0).StartAsync();
         }
 
-        private  void DatePickerFlyout_DatePicked(DatePickerFlyout sender, DatePickedEventArgs args)
+        private void DatePickerFlyout_DatePicked(DatePickerFlyout sender, DatePickedEventArgs args)
         {
             AppTitle.Text = "One 一个";
             var date = args.NewDate.DateTime.ToString("yyyy-MM");
-            myFrame.Navigate(typeof(HomeMonthPage),date);
+            myFrame.Navigate(typeof(HomeMonthPage), date);
             // myFrame.Navigate(typeof(HomePage));
 
             //if (AnalyticsInfo.VersionInfo.DeviceFamily == "Windows.Mobile")
@@ -124,42 +137,41 @@ namespace OneUWP
         /// 电脑端后台代码
         /// 电脑端后台代码
         /// 电脑端后台代码
-
-        private void HamburgerButton_Click(object sender, RoutedEventArgs e)
+        private async void ListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            mySplitView.IsPaneOpen = !mySplitView.IsPaneOpen;
-        }
-
-        private async void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var listBox = (sender as ListBox);
-            var item = (listBox.SelectedItem as ListBoxItem).Name;
-            if (item == "HomeListBoxItem")
+            //var item= (sender as ListView).SelectedItem;
+            // string name = (item as StackPanel).Name;
+            var item = (e.ClickedItem as StackPanel).Name;
+            if (item == "HamburgerButton")
+            {
+                mySplitView.IsPaneOpen = !mySplitView.IsPaneOpen;
+            }
+            else if (item == "Home")
             {
                 myFrame.Navigate(typeof(HomePage));
                 AppTitle.Text = "One 一个";
             }
-            else if (item == "ReadingListBoxItem")
+            else if (item == "Reading")
             {
                 myFrame.Navigate(typeof(ReadingPage));
                 AppTitle.Text = "阅 读";
             }
-            else if (item == "SettingListBoxItem")
+            else if (item == "Setting")
             {
                 myFrame.Navigate(typeof(SettingPage));
                 AppTitle.Text = "关 于";
             }
-            else if (item == "MovieListBoxItem")
+            else if (item == "Movie")
             {
                 myFrame.Navigate(typeof(MoviePage));
                 AppTitle.Text = "电影";
             }
-            else if (item == "MusicListBoxItem")
+            else if (item == "Music")
             {
                 myFrame.Navigate(typeof(MusicPage));
                 AppTitle.Text = "音乐";
             }
-            else if (item == "SetDateListBoxItem")
+            else if (item == "SetDate")
             {
                 AppTitle.Text = "选择日期";
                 //await myFrame.Blur(duration: 10, delay: 0, value: 5).StartAsync();
@@ -172,15 +184,7 @@ namespace OneUWP
                 datePickerFlyout.Closed += DatePickerFlyout_Closed;
                 datePickerFlyout.DatePicked += DatePickerFlyout_DatePicked;
             }
-
-          //  AppTitle.Text = myFrame.CurrentSourcePageType.ToString();
-
         }
-
-
-
-
-
 
         /// 手机端后台代码
         /// 手机端后台代码
@@ -243,6 +247,8 @@ namespace OneUWP
             //    mainPageViewModel.AppBarDisplayMode = AppBarClosedDisplayMode.Minimal;
             //}
         }
+
+
     }
 
 }

@@ -10,6 +10,8 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <ListView ItemsSource="{x:Bind readingMonthPageData}"
+                  IsItemClickEnabled="True"
+                  ItemClick="ListView_ItemClick"
                   SelectionMode="None">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="data:ReadingMonthPageModel">

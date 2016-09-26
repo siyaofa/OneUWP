@@ -66,14 +66,14 @@ namespace OneUWP
                             who = _serial_month.data[i].author.user_name,
                             content = _serial_month.data[i].excerpt,
                             type = mytype,
-                            id = _serial_month.data[i].serial_id
+                            id = _serial_month.data[i].id
                         });
                 }
             }
             else if (mytype == "短篇")
             {
                 var _essay_month = await APIService.Get_essay_month(date);
-                for(int i = 0; i < _essay_month.data.Count(); i++)
+                for (int i = 0; i < _essay_month.data.Count(); i++)
                 {
                     readingMonthPageData.Add(new ReadingMonthPageModel
                     {
@@ -89,6 +89,23 @@ namespace OneUWP
 
 
 
+        }
+
+        private void ListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            ReadingMonthPageModel item = (ReadingMonthPageModel)e.ClickedItem;
+            if (item.type == "问题")
+            {
+                Frame.Navigate(typeof(QuestionPage), item.id);
+            }
+            else if (item.type == "连载")
+            {
+                Frame.Navigate(typeof(SerialPage), item.id);
+            }
+            else if (item.type == "短篇")
+            {
+                Frame.Navigate(typeof(EssayPage), item.id);
+            }
         }
     }
 }

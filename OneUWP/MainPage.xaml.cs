@@ -118,7 +118,7 @@ namespace OneUWP
         {
             AppTitle.Text = "One 一个";
             var date = args.NewDate.DateTime.ToString("yyyy-MM");
-            DateTime serialDate = new DateTime(2016, 1, 1);
+
             string currentFrame = myFrame.CurrentSourcePageType.ToString();
 
             if (currentFrame == "OneUWP.HomePage")
@@ -127,16 +127,16 @@ namespace OneUWP
             }
             else if (currentFrame == "OneUWP.ReadingPage")
             {
-                MessageDialog message_dialog = new MessageDialog("专栏");
-                message_dialog.Commands.Add(new UICommand("短篇", cmd => { }, "短篇"));
-                if (args.NewDate.DateTime.CompareTo(serialDate) >= 0)
-                    message_dialog.Commands.Add(new UICommand("连载", cmd => { }, "连载"));
-                message_dialog.Commands.Add(new UICommand("问题", cmd => { }, "问题"));
-                IUICommand result = await message_dialog.ShowAsync();
-                //AppTitle.Text = result.Id.ToString();
-                List<string> para = new List<string> { result.Id.ToString(), date };
+                //MessageDialog message_dialog = new MessageDialog("专栏");
+                //message_dialog.Commands.Add(new UICommand("短篇", cmd => { }, "短篇"));
+                //if (args.NewDate.DateTime.CompareTo(serialDate) >= 0)
+                //    message_dialog.Commands.Add(new UICommand("连载", cmd => { }, "连载"));
+                //message_dialog.Commands.Add(new UICommand("问题", cmd => { }, "问题"));
+                //IUICommand result = await message_dialog.ShowAsync();
+                ////AppTitle.Text = result.Id.ToString();
+                //List<string> para = new List<string> { result.Id.ToString(), date };
                 // myFrame.Navigate(typeof(HomePage));
-                myFrame.Navigate(typeof(ReadingMonthPage),para);
+                myFrame.Navigate(typeof(ReadingChoicePage), args.NewDate.DateTime);
             }
 
             //if (AnalyticsInfo.VersionInfo.DeviceFamily == "Windows.Mobile")

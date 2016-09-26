@@ -317,8 +317,7 @@ namespace OneUWP.Http
         /// <returns></returns>
         public async static Task<serial_month> Get_serial_month(string date)
         {
-            // string url =string.Format(ServiceURL.serial_month,date);
-            string url = "http://v3.wufazhuce.com:8000/api/serialcontent/bymonth/" + date + "-01%2000:00:00?";
+            string url = string.Format(ServiceURL.serial_month, date);
             var result = await GetStringFromURL(url);
             var serializer = new DataContractJsonSerializer(typeof(serial_month));
             var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));

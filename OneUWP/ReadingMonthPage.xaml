@@ -5,9 +5,22 @@
     xmlns:local="using:OneUWP"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:OneUWP.Models"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <ListView ItemsSource="{x:Bind readingMonthPageData}"
+                  SelectionMode="None">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="data:ReadingMonthPageModel">
+                    <StackPanel Margin="0,0,0,20">
+                        <TextBlock Text="{x:Bind title}" TextWrapping="Wrap"/>
+                        <TextBlock Text="{x:Bind who}" TextWrapping="Wrap"/>
+                        <TextBlock Text="{x:Bind content}" TextWrapping="Wrap"/>
+                        <TextBlock Text="{x:Bind type}" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>

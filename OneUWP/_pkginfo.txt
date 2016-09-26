@@ -1,1 +1,1 @@
-C:\Users\siyao\Documents\Visual Studio 2015\Projects\OneUWP\OneUWP\AppPackages\OneUWP_1.1.0.0\OneUWP_1.1.0.0_x86_x64_arm.appxbundle
+C:\Users\siyao\documents\visual studio 2015\Projects\OneUWP\OneUWP\AppPackages\OneUWP_1.1.2.0\OneUWP_1.1.2.0_x86_x64_arm.appxbundle

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Networking.Connectivity;
 
-namespace ZhiHuDaily.UWP.Core.Tools
+namespace OneUWP.Tools
 {
     class NetworkManager
     {

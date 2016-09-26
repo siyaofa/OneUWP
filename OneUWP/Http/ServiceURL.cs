@@ -35,6 +35,7 @@ namespace OneUWP.Http
         /// 短篇评论
         /// </summary>
         public static string essay_comment = "http://v3.wufazhuce.com:8000/api/comment/praiseandtime/essay/1533/0?";
+        public static string essay_month = "http://v3.wufazhuce.com:8000/api/essay/bymonth/{0}-01%2000:00:00?";
         /// <summary>
         /// 短篇评论数
         /// </summary>
@@ -55,6 +56,7 @@ namespace OneUWP.Http
         /// 连载评论内容
         /// </summary>
         public static string serial_comment = "http://v3.wufazhuce.com:8000/api/comment/praiseandtime/serial/177/0?";
+        public static string serial_month = "http://v3.wufazhuce.com:8000/api/serialcontent/bymonth/{0}-01%2000:00:00?";
         /// <summary>
         /// 相关问题
         /// </summary>
@@ -67,6 +69,7 @@ namespace OneUWP.Http
         /// 问题的更新
         /// </summary>
         public static string question_update = "http://v3.wufazhuce.com:8000/api/question/update/1478/2016-09-21%2010:02:23?";
+        public static string question_month = "http://v3.wufazhuce.com:8000/api/question/bymonth/{0}-01%2000:00:00?";
         /// <summary>
         /// 连载内容
         /// </summary>

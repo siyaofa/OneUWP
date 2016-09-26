@@ -114,6 +114,7 @@
     <Compile Include="Http\Data\essay_comment.cs" />
     <Compile Include="Http\Data\essay_commentnum.cs" />
     <Compile Include="Http\Data\essay_detail.cs" />
+    <Compile Include="Http\Data\essay_month.cs" />
     <Compile Include="Http\Data\hp_detail.cs" />
     <Compile Include="Http\Data\hp_idlist.cs" />
     <Compile Include="Http\Data\hp_month.cs" />
@@ -126,12 +127,14 @@
     <Compile Include="Http\Data\music_related.cs" />
     <Compile Include="Http\Data\question_comment.cs" />
     <Compile Include="Http\Data\question_detail.cs" />
+    <Compile Include="Http\Data\question_month.cs" />
     <Compile Include="Http\Data\question_related.cs" />
     <Compile Include="Http\Data\question_update.cs" />
     <Compile Include="Http\Data\reading_idlist.cs" />
     <Compile Include="Http\Data\serial_comment.cs" />
     <Compile Include="Http\Data\serial_commentnum.cs" />
     <Compile Include="Http\Data\serial_detail.cs" />
+    <Compile Include="Http\Data\serial_month.cs" />
     <Compile Include="Http\Data\serial_related.cs" />
     <Compile Include="Http\ServiceURL.cs" />
     <Compile Include="ImagePage.xaml.cs">
@@ -143,17 +146,14 @@
     <Compile Include="Models\EssayPageModel.cs" />
     <Compile Include="Models\HomeMonthPageModel.cs" />
     <Compile Include="Models\HomePageModel.cs" />
+    <Compile Include="Models\IncrementalLoadingCollection.cs" />
     <Compile Include="Models\MoviePageModel.cs" />
     <Compile Include="Models\MovieStoryPageModel.cs" />
     <Compile Include="Models\MusicPageModel.cs" />
     <Compile Include="Models\MovieDetailPageSlideModel.cs" />
+    <Compile Include="Models\ReadingMonthPageModel.cs" />
     <Compile Include="Models\ReadingPageModel.cs" />
-    <Compile Include="Model\GetDateSheets.cs" />
-    <Compile Include="Model\HomepageData.cs" />
-    <Compile Include="Model\ImageOperation.cs" />
-    <Compile Include="Model\MovieData.cs" />
     <Compile Include="Model\NotificationUpdate.cs" />
-    <Compile Include="Model\Sheet.cs" />
     <Compile Include="Model\XmlUtil.cs" />
     <Compile Include="MovieDetailPage.xaml.cs">
       <DependentUpon>MovieDetailPage.xaml</DependentUpon>
@@ -237,8 +237,6 @@
     <Content Include="Assets\Wide310x150Logo.scale-125.png" />
     <Content Include="Assets\Wide310x150Logo.scale-150.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
-    <Content Include="Assets\XMLSheets\homepageSheet.XML" />
-    <Content Include="Assets\XMLSheets\questionpageSheet.XML" />
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />

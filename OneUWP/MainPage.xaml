@@ -27,7 +27,8 @@
                          FontWeight="Bold"
                          FontSize="24"
                          RelativePanel.AlignHorizontalCenterWithPanel="True" 
-                         Margin="20,0,0,0" />
+                         Margin="20,0,0,0" >
+              </TextBlock>
         </RelativePanel>
         <SplitView Grid.Row="1" 
                    Name="mySplitView" 
@@ -88,7 +89,13 @@
 
             <SplitView.Content>
                 <RelativePanel>
-                    <Frame Grid.Row="1" Name="myFrame"/>
+                    <Frame Grid.Row="1" Name="myFrame">
+                        <FlyoutBase.AttachedFlyout>
+                            <Flyout>
+                                <TextBlock Text="试试咯"/>
+                            </Flyout>
+                        </FlyoutBase.AttachedFlyout>
+                    </Frame>
                     <ProgressRing  Width="60" Height="60" 
                                    Visibility="{Binding ProgressRingVisibility}" 
                                    IsActive="True"

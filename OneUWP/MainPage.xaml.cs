@@ -14,6 +14,7 @@ using Windows.Foundation.Metadata;
 using Windows.Globalization.DateTimeFormatting;
 using Windows.System.Profile;
 using Windows.UI.Core;
+using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -38,21 +39,21 @@ namespace OneUWP
         public MainPage()
         {
             this.InitializeComponent();
+            this.DataContext = mainPageViewModel = new MainPageViewModel();
+            //如果是手机的话就显示状态栏
+            BackgroundTaskAction.ShowStatusBar(mainPageViewModel.APPTheme);
+            //订阅后退
             SystemNavigationManager.GetForCurrentView().BackRequested += MainPage_BackRequested;
             //订阅导航完成时事件
             myFrame.Navigated += myFrame_Navigated;
-            this.DataContext = mainPageViewModel = new MainPageViewModel();
             DispatcherManager.Current.Dispatcher = Dispatcher;
         }
 
         private void myFrame_Navigated(object sender, NavigationEventArgs e)
         {
-
             // 每次完成导航 确定下是否显示系统后退按钮
             // ReSharper disable once PossibleNullReferenceException
-            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
-                myFrame.BackStack.Any()
-                ? AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = myFrame.BackStack.Any() ? AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
         }
 
         /// <summary>
@@ -94,8 +95,7 @@ namespace OneUWP
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            //如果是手机的话就显示状态栏
-            BackgroundTaskAction.ShowStatusBar(mainPageViewModel.APPTheme);
+
             myFrame.Navigate(typeof(HomePage));
 
         }
@@ -114,12 +114,30 @@ namespace OneUWP
             await myFrame.Blur(value: 0).StartAsync();
         }
 
-        private void DatePickerFlyout_DatePicked(DatePickerFlyout sender, DatePickedEventArgs args)
+        private async void DatePickerFlyout_DatePicked(DatePickerFlyout sender, DatePickedEventArgs args)
         {
             AppTitle.Text = "One 一个";
             var date = args.NewDate.DateTime.ToString("yyyy-MM");
-            myFrame.Navigate(typeof(HomeMonthPage), date);
-            // myFrame.Navigate(typeof(HomePage));
+            DateTime serialDate = new DateTime(2016, 1, 1);
+            string currentFrame = myFrame.CurrentSourcePageType.ToString();
+
+            if (currentFrame == "OneUWP.HomePage")
+            {
+                myFrame.Navigate(typeof(HomeMonthPage), date);
+            }
+            else if (currentFrame == "OneUWP.ReadingPage")
+            {
+                MessageDialog message_dialog = new MessageDialog("专栏");
+                message_dialog.Commands.Add(new UICommand("短篇", cmd => { }, "短篇"));
+                if (args.NewDate.DateTime.CompareTo(serialDate) >= 0)
+                    message_dialog.Commands.Add(new UICommand("连载", cmd => { }, "连载"));
+                message_dialog.Commands.Add(new UICommand("问题", cmd => { }, "问题"));
+                IUICommand result = await message_dialog.ShowAsync();
+                //AppTitle.Text = result.Id.ToString();
+                List<string> para = new List<string> { result.Id.ToString(), date };
+                // myFrame.Navigate(typeof(HomePage));
+                myFrame.Navigate(typeof(ReadingMonthPage),para);
+            }
 
             //if (AnalyticsInfo.VersionInfo.DeviceFamily == "Windows.Mobile")
             //{
@@ -139,8 +157,6 @@ namespace OneUWP
         /// 电脑端后台代码
         private async void ListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            //var item= (sender as ListView).SelectedItem;
-            // string name = (item as StackPanel).Name;
             var item = (e.ClickedItem as StackPanel).Name;
             if (item == "HamburgerButton")
             {
@@ -183,6 +199,8 @@ namespace OneUWP
                 await datePickerFlyout.ShowAtAsync(myFrame);
                 datePickerFlyout.Closed += DatePickerFlyout_Closed;
                 datePickerFlyout.DatePicked += DatePickerFlyout_DatePicked;
+
+
             }
         }
 

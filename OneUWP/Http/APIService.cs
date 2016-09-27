@@ -20,32 +20,6 @@ namespace OneUWP.Http
     /// </summary>
     public class APIService
     {
-        public async static Task<string> GetStringFromURL(string url)
-        {
-            var httpClient = new HttpClient();
-            string fileName = FileNameFromURL(url);
-            var result = await FileHelper.Current.ReadObjectAsync<string>(fileName);
-            if (result == null)
-            {
-                var response = await httpClient.GetAsync(url);
-                result = await response.Content.ReadAsStringAsync();
-                await FileHelper.Current.WriteObjectAsync(result, fileName);
-            }
-            return result;
-        }
-        public static string FileNameFromURL(string str)
-        {
-            str = Regex.Replace(str, @"\\", string.Empty);
-            str = Regex.Replace(str, @"\/", string.Empty);
-            str = Regex.Replace(str, @"\:", string.Empty);
-            str = Regex.Replace(str, @"\*", string.Empty);
-            str = Regex.Replace(str, @"\?", string.Empty);
-            str = Regex.Replace(str, @"\<", string.Empty);
-            str = Regex.Replace(str, @"\>", string.Empty);
-            str = Regex.Replace(str, @"\|", string.Empty);
-            //str=Regex.Replace(str, @"[^\d]*", "");
-            return str;
-        }
 
         /// <summary>
         /// 短篇评论
@@ -76,7 +50,7 @@ namespace OneUWP.Http
         /// </summary>
         public async static Task<essay_detail> Get_essay_detail(string id)
         {
-            string url = ServiceURL.essay_detail + id + "?";
+            string url = string.Format(ServiceURL.essay_detail, id);
             var result = await GetStringFromURL(url);
             var serializer = new DataContractJsonSerializer(typeof(essay_detail));
             var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
@@ -102,7 +76,7 @@ namespace OneUWP.Http
         /// <returns></returns>
         public async static Task<hp_month> Get_hp_month(string date)
         {
-            var url = "http://v3.wufazhuce.com:8000/api/hp/bymonth/" + date + "-01%2000:00:00?";
+            var url = string.Format(ServiceURL.hp_month, date);
             var result = await GetStringFromURL(url);
             var serializer = new DataContractJsonSerializer(typeof(hp_month));
             var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
@@ -112,7 +86,7 @@ namespace OneUWP.Http
 
         public async static Task<serial_detail> Get_serial_detail(string id)
         {
-            var url = ServiceURL.serial_detail + id + "?";
+            var url = string.Format(ServiceURL.serial_detail, id);
             var result = await GetStringFromURL(url);
             var serializer = new DataContractJsonSerializer(typeof(serial_detail));
             var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
@@ -124,7 +98,7 @@ namespace OneUWP.Http
         /// </summary>
         public async static Task<hp_idlist> Get_hp_idlist()
         {
-            string url = ServiceURL.hp_idlist;
+            string url = string.Format(ServiceURL.hp_idlist, "0");
             var result = await GetStringFromURL(url);
             var serializer = new DataContractJsonSerializer(typeof(hp_idlist));
             var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
@@ -136,7 +110,7 @@ namespace OneUWP.Http
         /// </summary>
         public async static Task<movie_list> Get_movie_list()
         {
-            string url = ServiceURL.movie_list;
+            string url = string.Format(ServiceURL.movie_list, "0");
             var result = await GetStringFromURL(url);
             var serializer = new DataContractJsonSerializer(typeof(movie_list));
             var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
@@ -145,7 +119,7 @@ namespace OneUWP.Http
         }
         public async static Task<movie_detail> Get_movie_detail(string id)
         {
-            string url = ServiceURL.movie_detail + id + "?";
+            string url = string.Format(ServiceURL.movie_detail, id);
             var result = await GetStringFromURL(url);
             var serializer = new DataContractJsonSerializer(typeof(movie_detail));
             var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
@@ -157,7 +131,7 @@ namespace OneUWP.Http
             //需要根据不同的需求选择
             //"/story/0/0?"
             //"/story/1/0?"
-            string url = "http://v3.wufazhuce.com:8000/api/movie/" + id + "/story/0/0?";
+            string url = string.Format(ServiceURL.movie_story, id);
             var result = await GetStringFromURL(url);
             var serializer = new DataContractJsonSerializer(typeof(movie_story));
             var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
@@ -169,9 +143,11 @@ namespace OneUWP.Http
         /// <summary>
         /// 音乐的评论
         /// </summary>
-        public async static Task<music_comment> Get_music_comment()
+        public async static Task<music_comment> Get_music_comment(string id)
         {
-            string url = ServiceURL.music_comment;
+            //1024
+            id = "1024";
+            string url = string.Format(ServiceURL.music_comment, id);
             var result = await GetStringFromURL(url);
             var serializer = new DataContractJsonSerializer(typeof(music_comment));
             var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
@@ -183,7 +159,7 @@ namespace OneUWP.Http
         /// </summary>
         public async static Task<music_detail> Get_music_detail(string id)
         {
-            string url = ServiceURL.music_detail + id + '?';
+            string url = string.Format(ServiceURL.music_detail, id);
             var result = await GetStringFromURL(url);
             var serializer = new DataContractJsonSerializer(typeof(music_detail));
             var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
@@ -193,9 +169,9 @@ namespace OneUWP.Http
         /// <summary>
         /// 最近几期音乐
         /// </summary>
-        public async static Task<music_idlist> Get_music_idlist()
+        public async static Task<music_idlist> Get_music_idlist(string id)
         {
-            string url = ServiceURL.music_idlist;
+            string url = string.Format(ServiceURL.music_idlist, id);
             var result = await GetStringFromURL(url);
             var serializer = new DataContractJsonSerializer(typeof(music_idlist));
             var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
@@ -231,7 +207,7 @@ namespace OneUWP.Http
         /// </summary>
         public async static Task<question_detail> Get_question_detail(string id)
         {
-            string url = ServiceURL.question_detail + id + "?";
+            string url = string.Format(ServiceURL.question_detail, id);
             var result = await GetStringFromURL(url);
             var serializer = new DataContractJsonSerializer(typeof(question_detail));
             var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
@@ -351,6 +327,50 @@ namespace OneUWP.Http
             var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
             var data = (question_month)serializer.ReadObject(ms);
             return data;
+        }
+
+
+
+
+        public async static Task<string> GetStringFromURL(string url)
+        {
+            try
+            {
+                var httpClient = new HttpClient();
+                string fileName = FileNameFromURL(url);
+                try
+                {
+                    var response = await httpClient.GetAsync(url);
+                    var result = await response.Content.ReadAsStringAsync();
+                    await FileHelper.Current.WriteObjectAsync(result, fileName);
+                    return result;
+                }
+                catch
+                {
+                    var result = await FileHelper.Current.ReadObjectAsync<string>(fileName);
+                    return result;
+                }
+            }
+
+            catch
+            {
+                return null;
+            }
+
+
+        }
+        public static string FileNameFromURL(string str)
+        {
+            str = Regex.Replace(str, @"\\", string.Empty);
+            str = Regex.Replace(str, @"\/", string.Empty);
+            str = Regex.Replace(str, @"\:", string.Empty);
+            str = Regex.Replace(str, @"\*", string.Empty);
+            str = Regex.Replace(str, @"\?", string.Empty);
+            str = Regex.Replace(str, @"\<", string.Empty);
+            str = Regex.Replace(str, @"\>", string.Empty);
+            str = Regex.Replace(str, @"\|", string.Empty);
+            //str=Regex.Replace(str, @"[^\d]*", "");
+            return str;
         }
 
 

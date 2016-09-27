@@ -7,7 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Loaded="Page_Loaded"
     mc:Ignorable="d"
-    RequestedTheme="{Binding APPTheme}">
+    RequestedTheme="{Binding APPTheme}"
+   >
     <Page.BottomAppBar>
         <CommandBar Visibility="Collapsed">
             <AppBarButton Icon="Home" Label="图片" Click="AppBarButton_Click"/>

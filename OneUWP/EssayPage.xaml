@@ -11,33 +11,40 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <MediaElement Name="musicPlayer" AutoPlay="False"/>
-        <StackPanel Orientation="Horizontal">
-            
-            <Button Name="play" Click="Button_Click" Content="播放音乐"/>
-            <Button Name="pause" Click="Button_Click" Content="暂停音乐"/>
-            <Button Name="stop" Click="Button_Click" Content="停止音乐"/>
-            <TextBlock Grid.Row="0" Name="InfoTextBlock"/>
-        </StackPanel>
-        <ListView Grid.Row="1" Name="QuestionListView" SelectionMode="None">
-            <StackPanel Orientation="Vertical" ManipulationMode="System,TranslateX" >
+        <MediaElement Name="musicPlayer"  AutoPlay="False" />
+        <RelativePanel>
+            <Button Content="Music" RelativePanel.AlignRightWithPanel="True">
+                <Button.Flyout>
+                    <Flyout>
+                        <ListView IsItemClickEnabled="True"
+                                  ItemClick="ListView_ItemClick">
+                            <TextBlock  Text="播放"/>
+                            <TextBlock  Text="暂停"/>
+                            <TextBlock  Text="停止"/>
+                        </ListView>
+                    </Flyout>
+                </Button.Flyout>
+            </Button>
+            <TextBlock Grid.Row="0" Name="InfoTextBlock" RelativePanel.AlignLeftWithPanel="True"/>
+        </RelativePanel>
+        
+        <ListView Grid.Row="2" Name="QuestionListView" SelectionMode="None">
+            <StackPanel  ManipulationMode="System,TranslateX" >
                 <TextBlock Text="{x:Bind essayPageViewModel.guide_word,Mode=OneWay}"  TextWrapping="Wrap" FontWeight="Bold"  />
             </StackPanel>
-            <StackPanel Orientation="Vertical" ManipulationMode="System,TranslateX" >
-                <TextBlock Text="{x:Bind essayPageViewModel.audio,Mode=OneWay}" TextWrapping="Wrap" Margin="0,20,0,0" />
-            </StackPanel>
-            <StackPanel Orientation="Vertical" ManipulationMode="System,TranslateX" >
+            <StackPanel  ManipulationMode="System,TranslateX" >
                 <TextBlock Text="{x:Bind essayPageViewModel.hp_title,Mode=OneWay}" TextWrapping="Wrap" Margin="0,20,0,0" />
             </StackPanel>
-            <StackPanel Orientation="Vertical" ManipulationMode="System,TranslateX" >
+            <StackPanel  ManipulationMode="System,TranslateX" >
                 <TextBlock Text="{x:Bind essayPageViewModel.hp_author,Mode=OneWay}" TextWrapping="Wrap" Margin="0,20,0,0" />
             </StackPanel>
             <StackPanel Orientation="Vertical" ManipulationMode="System,TranslateX" >
                 <TextBlock Text="{x:Bind  essayPageViewModel.hp_makettime,Mode=OneWay}" TextWrapping="Wrap" FontWeight="Bold" Margin="0,20,0,0" />
             </StackPanel>
-            <StackPanel Orientation="Vertical" ManipulationMode="System,TranslateX" >
+            <StackPanel  ManipulationMode="System,TranslateX" >
                 <TextBlock Text="{x:Bind essayPageViewModel.hp_content,Mode=OneWay}" TextWrapping="Wrap" Margin="0,20,0,0" />
             </StackPanel>
         </ListView>

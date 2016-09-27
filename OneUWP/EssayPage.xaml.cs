@@ -44,23 +44,27 @@ namespace OneUWP
                 essayPageViewModel.guide_word = _essay_detail.data.guide_word;
                 essayPageViewModel.audio = _essay_detail.data.audio;
             }
+         }
 
-            musicPlayer.Source = new Uri(essayPageViewModel.audio);
-
-        }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             essayId = (string)e.Parameter;
         }
 
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if ((sender as Button).Name == "stop")
+            musicPlayer.Source = new Uri(essayPageViewModel.audio);
+        }
+
+        private void ListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var item =(TextBlock)e.ClickedItem;
+            string name = item.Text;
+            if (name == "停止")
             {
                 musicPlayer.Stop();
             }
-            else if ((sender as Button).Name == "play")
+            else if (name == "播放")
             {
                 musicPlayer.Play();
             }
@@ -69,7 +73,5 @@ namespace OneUWP
                 musicPlayer.Pause();
             }
         }
-
-
     }
 }

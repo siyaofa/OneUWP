@@ -14,11 +14,11 @@ namespace OneUWP.Http
         /// <summary>
         /// 最近几期的idlists首页
         /// </summary>
-        public static string hp_idlist = "http://v3.wufazhuce.com:8000/api/hp/idlist/0?";
+        public static string hp_idlist = "http://v3.wufazhuce.com:8000/api/hp/idlist/{0}?";
         /// <summary>
         /// 最近几期的idlist音乐
         /// </summary>
-        public static string music_idlist = "http://v3.wufazhuce.com:8000/api/music/idlist/0?";
+        public static string music_idlist = "http://v3.wufazhuce.com:8000/api/music/idlist/{0}?";
         /// <summary>
         /// 最近几期的idlist阅读
         /// </summary>
@@ -30,7 +30,7 @@ namespace OneUWP.Http
         /// <summary>
         /// 首页每月内容
         /// </summary>
-        public static string hp_month = "http://v3.wufazhuce.com:8000/api/hp/bymonth/2016-07-01%2000:00:00?";
+        public static string hp_month = "http://v3.wufazhuce.com:8000/api/hp/bymonth/{0}-01%2000:00:00?";
         /// <summary>
         /// 短篇评论
         /// </summary>
@@ -43,7 +43,7 @@ namespace OneUWP.Http
         /// <summary>
         /// 短篇内容
         /// </summary>
-        public static string essay_detail = "http://v3.wufazhuce.com:8000/api/essay/";
+        public static string essay_detail = "http://v3.wufazhuce.com:8000/api/essay/{0}?";
         /// <summary>
         /// 连载评论数
         /// </summary>
@@ -73,19 +73,23 @@ namespace OneUWP.Http
         /// <summary>
         /// 连载内容
         /// </summary>
-        public static string serial_detail = "http://v3.wufazhuce.com:8000/api/serialcontent/";
+        public static string serial_detail = "http://v3.wufazhuce.com:8000/api/serialcontent/{0}?";
         /// <summary>
         /// 问题内容
         /// </summary>
-        public static string question_detail = "http://v3.wufazhuce.com:8000/api/question/";
+        public static string question_detail = "http://v3.wufazhuce.com:8000/api/question/{0}?";
         /// <summary>
         /// 电影内容列表
         /// </summary>
-        public static string movie_list = "http://v3.wufazhuce.com:8000/api/movie/list/0?";
+        public static string movie_list = "http://v3.wufazhuce.com:8000/api/movie/list/{0}?";
         /// <summary>
         /// 电影详细内容
         /// </summary>
-        public static string movie_detail = "http://v3.wufazhuce.com:8000/api/movie/detail/";
+        public static string movie_detail = "http://v3.wufazhuce.com:8000/api/movie/detail/{0}?";
+        /// <summary>
+        /// 电影故事
+        /// </summary>
+        public static string movie_story = "http://v3.wufazhuce.com:8000/api/movie/{0}/story/0/0?";
         /// <summary>
         /// 相关音乐
         /// </summary>
@@ -93,10 +97,10 @@ namespace OneUWP.Http
         /// <summary>
         /// 音乐的评论
         /// </summary>
-        public static string music_comment = "http://v3.wufazhuce.com:8000/api/comment/praiseandtime/music/1024/0?";
+        public static string music_comment = "http://v3.wufazhuce.com:8000/api/comment/praiseandtime/music/{0}/0?";
         /// <summary>
         /// 音乐内容
         /// </summary>
-        public static string music_detail = "http://v3.wufazhuce.com:8000/api/music/detail/";
+        public static string music_detail = "http://v3.wufazhuce.com:8000/api/music/detail/{0}?";
     }
 }

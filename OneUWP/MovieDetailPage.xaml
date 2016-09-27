@@ -5,7 +5,6 @@
     xmlns:local="using:OneUWP"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Loaded="Page_Loaded"
     xmlns:data="using:OneUWP.Models"
     mc:Ignorable="d">
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -13,23 +12,27 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Name="InfoTextBlock"/>
-        <ListView Grid.Row="1" Name="QuestionListView" SelectionMode="None">
-            <MediaElement Name="myMedia" 
+        <StackPanel Grid.Row="0">
+            <TextBlock  Name="InfoTextBlock" Visibility="Collapsed" x:DeferLoadStrategy="Lazy" />
+            <ToggleButton Content="Movie" Click="MovieButton_Click"/>
+            <MediaElement x:DeferLoadStrategy="Lazy"
+                          Stretch="UniformToFill"
+                          Name="myMedia" 
                           AutoPlay="False"
                           AreTransportControlsEnabled="True">
                 <MediaElement.TransportControls>
                     <MediaTransportControls IsCompact="True"
                                             IsEnabled="True"
-                                            IsStopButtonVisible="False"
+                                            IsStopButtonVisible="True"
                                             IsFastForwardButtonVisible="False"
                                             IsFastRewindButtonVisible="False"
                                             IsVolumeButtonVisible="False"/>
                 </MediaElement.TransportControls>
             </MediaElement>
+        </StackPanel>
+        <ListView Grid.Row="1" Name="QuestionListView" SelectionMode="None">
             <StackPanel Orientation="Vertical" ManipulationMode="System,TranslateX" >
                 <Image Source="{x:Bind movieDetailPageViewModel.detailcover,Mode=OneWay}" Stretch="UniformToFill" />
-               
             </StackPanel>
             <Button Content="全部电影故事" Click="Button_Click" />
             <Grid>
@@ -52,7 +55,6 @@
                         Text="{x:Bind movieDetailPageViewModel.story_input_date,Mode=OneWay}" TextWrapping="Wrap"/>
                 <TextBlock Grid.Row="1" Grid.Column="1"
                         Text="{x:Bind movieDetailPageViewModel.story_user_name,Mode=OneWay}" TextWrapping="Wrap" />
-
                 <TextBlock Grid.Row="2" Grid.Column="1"
                            Text="{x:Bind movieDetailPageViewModel.title,Mode=OneWay}" TextWrapping="Wrap" Margin="0,20,0,0" />
                 <TextBlock Grid.Row="3" Grid.Column="1"
@@ -69,21 +71,14 @@
                     <PivotItem.Header>
                         <TextBlock Text="剧照"/>
                     </PivotItem.Header>
-                    <ListView 
+                    <FlipView HorizontalAlignment="Stretch"
                         ItemsSource="{x:Bind slide}">
-                        <!--<ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                            </Style>
-                        </ListView.ItemContainerStyle>
-                            -->
-                        
-                        <ListView.ItemTemplate>
+                        <FlipView.ItemTemplate>
                             <DataTemplate x:DataType="data:MovieDetailPageSlideModel">
-                                <Image Source="{x:Bind slide}" Stretch="UniformToFill"/>
+                                <Image Source="{x:Bind slide}" Stretch="Uniform"/>
                             </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                        </FlipView.ItemTemplate>
+                    </FlipView>
                 </PivotItem>
                 <PivotItem>
                     <PivotItem.Header>

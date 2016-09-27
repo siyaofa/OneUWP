@@ -100,55 +100,49 @@ namespace OneUWP
 
         }
 
-        private async void DatePickerFlyout_Closed(object sender, object e)
+        private void DatePickerFlyout_Closed(object sender, object e)
         {
-            //if (AnalyticsInfo.VersionInfo.DeviceFamily == "Windows.Mobile")
-            //{
-            //    await myFrame.Blur(value: 0).StartAsync();
-            //}
-            //else
-            //{
-            //    await myFrame.Blur(value: 0).StartAsync();
-            //}
 
-            await myFrame.Blur(value: 0).StartAsync();
         }
 
-        private async void DatePickerFlyout_DatePicked(DatePickerFlyout sender, DatePickedEventArgs args)
+        private void DatePickerFlyout_DatePicked(DatePickerFlyout sender, DatePickedEventArgs args)
         {
             AppTitle.Text = "One 一个";
             var date = args.NewDate.DateTime.ToString("yyyy-MM");
-
             string currentFrame = myFrame.CurrentSourcePageType.ToString();
-
             if (currentFrame == "OneUWP.HomePage")
             {
                 myFrame.Navigate(typeof(HomeMonthPage), date);
             }
             else if (currentFrame == "OneUWP.ReadingPage")
             {
-                //MessageDialog message_dialog = new MessageDialog("专栏");
-                //message_dialog.Commands.Add(new UICommand("短篇", cmd => { }, "短篇"));
-                //if (args.NewDate.DateTime.CompareTo(serialDate) >= 0)
-                //    message_dialog.Commands.Add(new UICommand("连载", cmd => { }, "连载"));
-                //message_dialog.Commands.Add(new UICommand("问题", cmd => { }, "问题"));
-                //IUICommand result = await message_dialog.ShowAsync();
-                ////AppTitle.Text = result.Id.ToString();
-                //List<string> para = new List<string> { result.Id.ToString(), date };
-                // myFrame.Navigate(typeof(HomePage));
                 myFrame.Navigate(typeof(ReadingChoicePage), args.NewDate.DateTime);
             }
+            else if (currentFrame == "OneUWP.SerialPage")
+            {
+                List<string> para = new List<string>();
+                para.Add("连载");
+                para.Add(date);
+                DateTime serialDate = new DateTime(2016, 1, 1);
+                if (args.NewDate.DateTime.CompareTo(serialDate) >= 0)
+                    myFrame.Navigate(typeof(ReadingMonthPage), para);
+            }
+            else if (currentFrame == "OneUWP.EssayPage")
+            {
+                List<string> para = new List<string>();
+                para.Add("短篇");
+                para.Add(date);
+                myFrame.Navigate(typeof(ReadingMonthPage), para);
+            }
+            else if (currentFrame == "OneUWP.QuestionPage")
+            {
+                List<string> para = new List<string>();
+                para.Add("问题");
+                para.Add(date);
+                myFrame.Navigate(typeof(ReadingMonthPage), para);
+            }
 
-            //if (AnalyticsInfo.VersionInfo.DeviceFamily == "Windows.Mobile")
-            //{
-            //    await myFrame.Blur(value: 0).StartAsync();
-            //}
-            //else
-            //{
-            //    await myFrame.Blur(value: 0).StartAsync();
-            //}
 
-            // await myFrame.Blur(value: 0).StartAsync();
         }
 
 
@@ -234,7 +228,7 @@ namespace OneUWP
             else if (lable == "日期")
             {
                 AppTitle.Text = "选择日期";
-                await myFrame.Blur(duration: 10, delay: 0, value: 5).StartAsync();
+
                 DatePickerFlyout datePickerFlyout = new DatePickerFlyout();
                 datePickerFlyout.MinYear = DateTimeOffset.Now.AddYears(-4);
                 datePickerFlyout.MaxYear = DateTimeOffset.Now;
@@ -256,14 +250,7 @@ namespace OneUWP
 
         private void Grid_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
-            //if (mainPageViewModel.AppBarDisplayMode == AppBarClosedDisplayMode.Minimal)
-            //{
-            //    mainPageViewModel.AppBarDisplayMode = AppBarClosedDisplayMode.Compact;
-            //}
-            //else if (mainPageViewModel.AppBarDisplayMode == AppBarClosedDisplayMode.Compact)
-            //{
-            //    mainPageViewModel.AppBarDisplayMode = AppBarClosedDisplayMode.Minimal;
-            //}
+
         }
 
 

@@ -32,32 +32,13 @@ namespace OneUWP
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// 最好不要在这个页面里面运行过多，不然可能会造成线程阻塞
         /// </summary>
-        internal static bool isFirstLoad = true;
-        internal static DateTime today = DateTime.Today;
-        internal static DateTime currentDate = today;
-        //最新的列表
-
-        internal static reading_idlist readingIDList;
-
-
-
-
         public App()
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
             new BackgroundProxy().Register();
-            GetIdList();
+     
         }
-
-        private async void GetIdList()
-        {
-
-            readingIDList = await Http.APIService.Get_reading_idlist();
-
-        }
-
-
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
@@ -67,7 +48,8 @@ namespace OneUWP
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
-
+            //设置最小界面大小
+           // ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(600, 1000));
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
@@ -97,8 +79,6 @@ namespace OneUWP
                 Window.Current.Activate();
             }
         }
-
-     
 
         /// <summary>
         /// Invoked when Navigation to a certain page fails

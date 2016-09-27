@@ -39,18 +39,16 @@ namespace OneUWP
             int xR = 50;
             if (x > xR)//判断滑动的距离是否符合条件
             {
-                App.currentDate = App.currentDate.AddDays(1);
                 PageFresh();
             }
             else if (x < -xR)
             {
-                App.currentDate = App.currentDate.AddDays(-1);
                 PageFresh();
             }
             x = 0;
         }
 
-        private  void Page_Loaded(object sender, RoutedEventArgs e)
+        private void Page_Loaded(object sender, RoutedEventArgs e)
         {
 
             PageFresh();
@@ -88,13 +86,13 @@ namespace OneUWP
             else
             {
                 InfoTextBlock.Visibility = Visibility.Visible;
-                InfoTextBlock.Text = App.currentDate.ToString("yyyy-MM-dd") + " 暂无内容";
+                InfoTextBlock.Text = " 暂无内容";
             }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-           questionId = (string)e.Parameter;
+            questionId = (string)e.Parameter;
         }
     }
 

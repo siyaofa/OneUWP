@@ -16,7 +16,9 @@
         </Grid.RowDefinitions>
         <!--调试时显示错误信息-->
         <TextBlock Grid.Row="0" Name="InfoTextBlock"/>
-        <FlipView Grid.Row="1" Name="homeFlipView" 
+        <FlipView Grid.Row="1" 
+                  Name="homeFlipView" 
+                  HorizontalAlignment="Stretch"
               UseTouchAnimationsForAllNavigation="False"
               ItemsSource="{x:Bind homePageData}">
             <FlipView.ItemTemplate>

@@ -42,7 +42,7 @@ namespace OneUWP
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
 
-            musicIDList = await Http.APIService.Get_music_idlist();
+            musicIDList = await Http.APIService.Get_music_idlist("0");
             FreshPage(musicIDList.data[0]);
         }
 

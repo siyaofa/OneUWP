@@ -31,25 +31,20 @@ namespace OneUWP
         public MovieDetailPageViewModel movieDetailPageViewModel = new MovieDetailPageViewModel();
         public ObservableCollection<MovieDetailPageSlideModel> slide = new ObservableCollection<MovieDetailPageSlideModel>();
         public string movieId;
-        public movie_story _movie_story;
 
         public MovieDetailPage()
         {
             this.InitializeComponent();
         }
 
-
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             movieId = (string)e.Parameter;
+            PageFresh(movieId);
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            PageFresh();
-        }
 
-        public async void PageFresh()
+        public async void PageFresh(string movieId)
         {
             var _movie_detail = await APIService.Get_movie_detail(movieId);
             movieDetailPageViewModel.video = _movie_detail.data.video;
@@ -59,23 +54,33 @@ namespace OneUWP
             movieDetailPageViewModel.detailcover = await ImageOperation.GetImage(_movie_detail.data.detailcover);
             for (int i = 0; i < _movie_detail.data.photo.Count(); i++)
                 slide.Add(new MovieDetailPageSlideModel { slide = await ImageOperation.GetImage(_movie_detail.data.photo[i]) });
-
-
-                myMedia.Source = new Uri(movieDetailPageViewModel.video);
-
-            _movie_story = await APIService.Get_movie_story(movieId);
+            var _movie_story = await APIService.Get_movie_story(movieId);
             movieDetailPageViewModel.story_web_url = await ImageOperation.GetImage(_movie_story.data.data[0].user.web_url);
             movieDetailPageViewModel.story_input_date = _movie_story.data.data[0].input_date;
-            movieDetailPageViewModel.story_user_name= _movie_story.data.data[0].user.user_name;
+            movieDetailPageViewModel.story_user_name = _movie_story.data.data[0].user.user_name;
             movieDetailPageViewModel.story_content = _movie_story.data.data[0].content;
-
-           
-
         }
 
         public void Button_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(MovieStoryPage), movieId);
+        }
+
+        private void MovieButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (myMedia == null)
+            {
+                this.FindName(nameof(myMedia));
+                if (myMedia.Source == null)
+                    myMedia.Source = new Uri(movieDetailPageViewModel.video);
+            }
+            if ((sender as ToggleButton).IsChecked == true)
+                myMedia.Visibility = Visibility.Visible;
+            else
+            {
+                myMedia.Pause();
+                myMedia.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }

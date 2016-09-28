@@ -19,15 +19,14 @@
         <FlipView Grid.Row="1" 
                   Name="homeFlipView" 
                   HorizontalAlignment="Stretch"
-              UseTouchAnimationsForAllNavigation="False"
-              ItemsSource="{x:Bind homePageData}">
+                  ItemsSource="{x:Bind homePageData}">
             <FlipView.ItemTemplate>
                 <DataTemplate x:DataType="data:HomePageModel">
-                    <ListView  SelectionMode="None">
-                        <Image Source="{x:Bind writeableBitmap}"  Stretch="UniformToFill"/>
-                        <TextBlock Text="{x:Bind author}" TextWrapping="Wrap" Margin="0,20,0,0" HorizontalAlignment="Right"/>
-                        <TextBlock Text="{x:Bind date}"  TextWrapping="Wrap" Margin="0,20,0,0" HorizontalAlignment="Right"/>
-                        <TextBlock Text="{x:Bind content}"  TextWrapping="Wrap" Margin="0,20,0,0"/>
+                    <ListView HorizontalAlignment="Stretch" SelectionMode="None">
+                        <Image Source="{x:Bind writeableBitmap}"  Stretch="UniformToFill" x:Phase="2"/>
+                        <TextBlock Text="{x:Bind author}" TextWrapping="Wrap" Margin="0,20,0,0" HorizontalAlignment="Right" x:Phase="1"/>
+                        <TextBlock Text="{x:Bind date}"  TextWrapping="Wrap" Margin="0,20,0,0" HorizontalAlignment="Right" x:Phase="1"/>
+                        <TextBlock Text="{x:Bind content}"  TextWrapping="Wrap" Margin="0,20,0,0" x:Phase="1"/>
                     </ListView>
                 </DataTemplate>
             </FlipView.ItemTemplate>

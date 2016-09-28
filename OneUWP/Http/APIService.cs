@@ -251,6 +251,32 @@ namespace OneUWP.Http
             return data;
         }
         /// <summary>
+        /// 阅读界面的顶部carousel
+        /// </summary>
+        /// <returns></returns>
+        public async static Task<reading_carousel> Get_reading_carousel()
+        {
+            string url = ServiceURL.reading_carousel;
+            var result = await GetStringFromURL(url);
+            var serializer = new DataContractJsonSerializer(typeof(reading_carousel));
+            var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
+            var data = (reading_carousel)serializer.ReadObject(ms);
+            return data;
+        }
+        /// <summary>
+        /// reading_carousel内容
+        /// </summary>
+        /// <returns></returns>
+        public async static Task<reading_carousel_content> Get_reading_carousel_content(string id)
+        {
+            string url =string.Format(ServiceURL.reading_carousel_content,id);
+            var result = await GetStringFromURL(url);
+            var serializer = new DataContractJsonSerializer(typeof(reading_carousel_content));
+            var ms = new MemoryStream(Encoding.UTF8.GetBytes(result));
+            var data = (reading_carousel_content)serializer.ReadObject(ms);
+            return data;
+        }
+        /// <summary>
         /// 连载评论内容
         /// </summary>
         public async static Task<serial_comment> Get_serial_comment()

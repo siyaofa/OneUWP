@@ -41,12 +41,29 @@ namespace OneUWP
             this.InitializeComponent();
             this.DataContext = mainPageViewModel = new MainPageViewModel();
             //如果是手机的话就显示状态栏
-            BackgroundTaskAction.ShowStatusBar(mainPageViewModel.APPTheme);
+            ShowStatusBar();
             //订阅后退
             SystemNavigationManager.GetForCurrentView().BackRequested += MainPage_BackRequested;
             //订阅导航完成时事件
             myFrame.Navigated += myFrame_Navigated;
             DispatcherManager.Current.Dispatcher = Dispatcher;
+
+        }
+
+        public async void ShowStatusBar()
+        {
+            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+            {
+                var statusbar = StatusBar.GetForCurrentView();
+                await statusbar.ShowAsync();
+                if (mainPageViewModel.APPTheme == ElementTheme.Dark)
+                    statusbar.BackgroundColor = Windows.UI.Colors.Black;
+                else
+                statusbar.BackgroundColor = Windows.UI.Colors.SkyBlue;
+                statusbar.BackgroundOpacity = 1;
+                statusbar.ForegroundColor = Windows.UI.Colors.White;
+
+            }
         }
 
         private void myFrame_Navigated(object sender, NavigationEventArgs e)

@@ -36,7 +36,7 @@ namespace OneUWP
         private void ListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             HomeMonthPageModel item = (HomeMonthPageModel)e.ClickedItem;
-            Frame.Navigate(typeof(HomePage),item.hpId);
+            Frame.Navigate(typeof(HomePage), item.hpId);
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -46,20 +46,20 @@ namespace OneUWP
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-         string  hpDate= (string)e.Parameter;
+            string hpDate = (string)e.Parameter;
             FreshPage(hpDate);
         }
 
         private async void FreshPage(string hpDate)
         {
             hp_month _hp_month = await APIService.Get_hp_month(hpDate);
-            for(int i = 0; i < _hp_month.data.Count(); i++)
+            for (int i = 0; i < _hp_month.data.Count(); i++)
             {
                 homeMonthPageData.Add(new HomeMonthPageModel
                 {
                     wb = await ImageOperation.GetImage(_hp_month.data[i].hp_img_url),
                     hpId = _hp_month.data[i].hpcontent_id,
-                    date=_hp_month.data[i].hp_makettime
+                    date = _hp_month.data[i].hp_makettime
                 });
             }
         }

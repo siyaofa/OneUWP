@@ -26,6 +26,7 @@ namespace OneUWP
     public sealed partial class ReadingPage : Page
     {
         public ObservableCollection<ReadingPageModel> readingPageData = new ObservableCollection<ReadingPageModel>();
+        public ObservableCollection<ReadingPageCarouselModel> readingPageCarouselData = new ObservableCollection<ReadingPageCarouselModel>();
         public ReadingPage()
         {
             this.InitializeComponent();
@@ -34,10 +35,8 @@ namespace OneUWP
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
             Http.Data.reading_idlist _reading_idlist = await APIService.Get_reading_idlist();
-            for (int i = 0; i < _reading_idlist.data.essay.Count() - 1; i++)
+            for (int i = 0; i < _reading_idlist.data.essay.Count(); i++)
             {
-                // var _question = new ReadingPageModel.question { question_title = _reading_idlist.data.question[i].question_title };
-
                 readingPageData.Add(
                     new ReadingPageModel
                     {
@@ -51,6 +50,21 @@ namespace OneUWP
                     }
                 );
             }
+
+
+            Http.Data.reading_carousel _reading_carousel = await APIService.Get_reading_carousel();
+            InfoTextBlock.Text = _reading_carousel.data.Count().ToString();
+            for (int i = 0; i < _reading_carousel.data.Count(); i++)
+            {
+                readingPageCarouselData.Add(
+                    new ReadingPageCarouselModel
+                    {
+                        cover = await Tools.ImageOperation.GetImage(_reading_carousel.data[i].cover),
+                        pvId = _reading_carousel.data[i].id
+                    });
+            }
+
+
 
         }
 
@@ -71,10 +85,16 @@ namespace OneUWP
                 case "questionGrid":
                     Frame.Navigate(typeof(QuestionPage), (e.ClickedItem as Grid).Tag);
                     break;
-
             }
 
-            InfoTextBlock.Text = (e.ClickedItem as Grid).Name + "      " + (sender as ListView).Tag.ToString();
+          //  InfoTextBlock.Text = (e.ClickedItem as Grid).Name + "      " + (sender as ListView).Tag.ToString();
+        }
+
+
+        private void Image_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            var item = (sender as Image);
+            Frame.Navigate(typeof(ReadingCarouselPage), item.Tag.ToString());
         }
     }
 }

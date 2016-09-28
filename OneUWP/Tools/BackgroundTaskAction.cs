@@ -30,36 +30,7 @@ namespace OneUWP
             //undevent
         }
 
-        public static async void ShowStatusBar(ElementTheme APPTheme)
-        {
-            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
-            {
-
-                var statusbar = StatusBar.GetForCurrentView();
-                if (false)
-                {
-                    await statusbar.ShowAsync();
-                    if (APPTheme == ElementTheme.Dark)
-                    {
-                        statusbar.BackgroundColor = Windows.UI.Colors.Black;
-                        statusbar.BackgroundOpacity = 1;
-                        statusbar.ForegroundColor = Windows.UI.Colors.White;
-                    }
-                    else
-                    {
-                        statusbar.BackgroundColor = Windows.UI.Colors.White;
-                        statusbar.BackgroundOpacity = 1;
-                        statusbar.ForegroundColor = Windows.UI.Colors.Black;
-                    }
-                }
-                else
-                {
-                    await statusbar.HideAsync();
-                }
-
-
-            }
-        }
+     
 
 
         public static void ShowToastNotification(string assetsImageFileName, string text)

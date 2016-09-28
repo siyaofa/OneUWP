@@ -17,4 +17,5 @@ namespace OneUWP.Models
         public string questionId { set; get; }
         public string date { set; get; }
     }
+
 }

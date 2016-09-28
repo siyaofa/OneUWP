@@ -8,21 +8,44 @@
     xmlns:data="using:OneUWP.Models"
     Loaded="Page_Loaded"
     mc:Ignorable="d">
-
+    <Page.Resources>
+        <Style x:Key="GridViewItemContainerStyleDefault" TargetType="GridViewItem">
+            <Setter Property="Width" Value="200"/>
+        </Style>
+        <Style x:Key="GridViewItemContainerStyleWide" TargetType="GridViewItem">
+            <Setter Property="Width" Value="300"/>
+        </Style>
+    </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ListView
-            ItemsSource="{x:Bind homeMonthPageData}"
-            IsItemClickEnabled="True"
-            ItemClick="ListView_ItemClick"
-            SelectionMode="None">
-            <ListView.ItemTemplate>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualState x:Name="Default">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowHeight="500"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="myGridView.ItemContainerStyle" Value="{StaticResource GridViewItemContainerStyleDefault}" /> 
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Wide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowHeight="720"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="myGridView.ItemsWrapGrid" Value="{StaticResource GridViewItemContainerStyleWide}" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <GridView IsItemClickEnabled="True"
+                 ItemClick="ListView_ItemClick"
+                 Name="myGridView"
+           ItemsSource="{x:Bind homeMonthPageData}">
+            <GridView.ItemTemplate>
                 <DataTemplate x:DataType="data:HomeMonthPageModel">
-                    <StackPanel>
-                        <TextBlock Text="{x:Bind date}"/>
-                        <Image Source="{x:Bind wb}"/>
-                    </StackPanel> 
+                    <Image Source="{x:Bind wb}" Stretch="Uniform"/>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            </GridView.ItemTemplate>
+        </GridView>
     </Grid>
 </Page>

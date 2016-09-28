@@ -20,6 +20,14 @@ namespace OneUWP.Http
         /// </summary>
         public static string music_idlist = "http://v3.wufazhuce.com:8000/api/music/idlist/{0}?";
         /// <summary>
+        /// reading顶部封面
+        /// </summary>
+        public static string reading_carousel = "http://v3.wufazhuce.com:8000/api/reading/carousel/?";
+        /// <summary>
+        /// reading Carousel内容
+        /// </summary>
+        public static string reading_carousel_content = "http://v3.wufazhuce.com:8000/api/reading/carousel/{0}?version=3.5.0&platform=android";
+        /// <summary>
         /// 最近几期的idlist阅读
         /// </summary>
         public static string reading_idlist = "http://v3.wufazhuce.com:8000/api/reading/index/?";

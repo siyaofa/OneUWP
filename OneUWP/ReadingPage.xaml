@@ -15,51 +15,65 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-        <TextBlock Name="InfoTextBlock"/>
-
-        <ListView Grid.Row="1"
-            ItemsSource="{x:Bind readingPageData}"
-                  SelectionMode="None"
-                  IsItemClickEnabled="True">
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="data:ReadingPageModel">
-                    <ListView IsItemClickEnabled="True"
+        <TextBlock Grid.Row="0" Name="InfoTextBlock"/>
+        <Grid Grid.Row="1">
+            <FlipView IsTapEnabled="True"
+                  ItemsSource="{x:Bind readingPageCarouselData}">
+                <FlipView.ItemTemplate>
+                    <DataTemplate x:DataType="data:ReadingPageCarouselModel">
+                        <Image Tag="{x:Bind pvId,Mode=OneWay}" 
+                                   Source="{x:Bind cover,Mode=OneWay}" 
+                                   Tapped="Image_Tapped"
+                                   />
+                    </DataTemplate>
+                </FlipView.ItemTemplate>
+            </FlipView>
+        </Grid>
+        <Grid Grid.Row="2">
+            <FlipView 
+            ItemsSource="{x:Bind readingPageData}">
+                <FlipView.ItemTemplate>
+                    <DataTemplate x:DataType="data:ReadingPageModel">
+                        <ListView IsItemClickEnabled="True"
                               SelectionMode="None"
                                ItemClick="SmallListView_ItemClick"
                               Margin="0,0,0,10"
                               Tag="{x:Bind date}">
-                        <TextBlock Text="{x:Bind date}" FontWeight="ExtraBold"/>
-                        <Grid Name="essayGrid"
+                            <TextBlock Text="{x:Bind date}" FontWeight="ExtraBold"/>
+                            <Grid Name="essayGrid"
                             Tag="{x:Bind essayId}"  >
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <TextBlock Text="短篇" FontWeight="Bold"/>
-                            <TextBlock Grid.Row="1" Text="{x:Bind essay,Mode=OneWay}" TextWrapping="Wrap"/>
-                        </Grid>
-                        <Grid Name="serialGrid"
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="短篇" FontWeight="Bold"/>
+                                <TextBlock Grid.Row="1" Text="{x:Bind essay,Mode=OneWay}" TextWrapping="Wrap"/>
+                            </Grid>
+                            <Grid Name="serialGrid"
                            Tag="{x:Bind serialId}" >
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <TextBlock Text="连载" FontWeight="Bold"/>
-                            <TextBlock Grid.Row="1" Text="{x:Bind serial,Mode=OneWay}" TextWrapping="Wrap"/>
-                        </Grid>
-                        <Grid Name="questionGrid"
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="连载" FontWeight="Bold"/>
+                                <TextBlock Grid.Row="1" Text="{x:Bind serial,Mode=OneWay}" TextWrapping="Wrap"/>
+                            </Grid>
+                            <Grid Name="questionGrid"
                                Tag="{x:Bind questionId}">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <TextBlock Text="问题" FontWeight="Bold"/>
-                            <TextBlock Grid.Row="1" Text="{x:Bind question,Mode=OneWay}" TextWrapping="Wrap"/>
-                        </Grid>
-                    </ListView>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="问题" FontWeight="Bold"/>
+                                <TextBlock Grid.Row="1" Text="{x:Bind question,Mode=OneWay}" TextWrapping="Wrap"/>
+                            </Grid>
+                        </ListView>
+                    </DataTemplate>
+                </FlipView.ItemTemplate>
+            </FlipView>
+
+        </Grid>
     </Grid>
 </Page>

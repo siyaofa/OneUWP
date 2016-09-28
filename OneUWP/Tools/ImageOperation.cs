@@ -82,8 +82,8 @@ namespace OneUWP.Tools
 
         public static async Task<WriteableBitmap> GetImage(string url)
         {
-            string fileName = Http.APIService.FileNameFromURL(url)+".jpg";
-
+           // string fileName = Http.APIService.FileNameFromURL(url)+".jpg";
+            string fileName = Http.APIService.FileNameFromURL(url);
             WriteableBitmap wb = await GetLocalPictureAsync(fileName);
             if (wb == null)
             {

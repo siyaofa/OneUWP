@@ -22,8 +22,9 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <RelativePanel x:Name="TitleRelativePanel" Background="SkyBlue">
-            <TextBlock  Name="AppTitle" 
+        <RelativePanel x:Name="TitleRelativePanel" Background="LightBlue">
+            <TextBlock 
+                Name="AppTitle" 
                         Text="One 一个" 
                          FontWeight="Bold"
                          FontSize="24"
